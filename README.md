@@ -6,7 +6,9 @@ Backup of my Caelestia theme templates and Hyprland configuration.
 
 - `.config/caelestia/`: Caelestia settings, theme templates, synchronization scripts, and Hyprland user overrides.
 - `.config/fish/functions/`: Selected personal Fastfetch wallpaper helper functions.
+- `.config/fastfetch/`: Fastfetch layout and Caelestia colour-template configuration.
 - `.config/hypr/`: Lua-based Hyprland configuration and generated colour-scheme integration.
+- `.config/starship.toml`: Starship prompt configuration generated from the Caelestia theme template.
 - `.config/xdg-terminals.list`: Preferred XDG terminal order, with the Caelestia-aware Foot launcher first.
 - `.local/bin/`: Personal Caelestia wallpaper and terminal helper scripts.
 - `.local/share/applications/foot-caelestia.desktop`: Desktop entry for launching Foot with an interactive Fish environment.
@@ -20,7 +22,9 @@ Clone the repository, then copy the backed-up configuration into the home direct
 cp -a .config/caelestia ~/.config/
 mkdir -p ~/.config/fish/functions
 cp -a .config/fish/functions/. ~/.config/fish/functions/
+cp -a .config/fastfetch ~/.config/
 cp -a .config/hypr ~/.config/
+cp -a .config/starship.toml ~/.config/
 cp -a .config/xdg-terminals.list ~/.config/
 mkdir -p ~/.local/bin
 cp -a .local/bin/. ~/.local/bin/

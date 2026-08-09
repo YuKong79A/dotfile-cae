@@ -16,6 +16,7 @@ Backup of my Caelestia theme templates and Hyprland configuration.
 - `.local/share/applications/foot-caelestia.desktop`: Desktop entry for launching Foot with an interactive Fish environment.
 - `.local/share/icons/Papirus-caelestia-dark/`: Custom Caelestia-generated Papirus icon theme.
 - `docs/backup-conversation-2026-08-09.md`: Sanitized user-visible transcript of the backup session.
+- `docs/restore-with-codex-prompt.md`: Reusable Chinese prompt for restoring this backup with Codex after reinstalling.
 
 ## Restore
 

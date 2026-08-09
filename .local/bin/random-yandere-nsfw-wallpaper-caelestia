@@ -1,0 +1,211 @@
+#!/bin/bash
+set -euo pipefail
+
+# =============================================================================
+# 功能描述:
+#   从 yande.re API 获取随机 NSFW 壁纸，强制转换为 PNG 格式，并使用 Caelestia 设置为桌面壁纸。
+#
+# 选项:
+#   -k: 保留模式，不清理旧壁纸
+#   -s: 静默模式，关闭桌面通知
+#   -h: 显示帮助信息
+#
+# 依赖:
+#   curl, jq, file, gdbus 或 notify-send, ImageMagick (magick 或 convert), caelestia
+# =============================================================================
+
+API_URL="https://yande.re/post.json"
+API_TAGS="wallpaper rating:e -loli -shota -child -children"
+API_LIMIT=100
+API_MAX_PAGE=80
+API_RETRY_COUNT=10
+SAVE_DIR="$HOME/Pictures/Wallpapers/anime"
+FILE_PREFIX="yandere_nsfw"
+KEEP_COUNT=40
+WALLPAPER_SOURCE_NAME="Yande.re NSFW"
+CURL_DOH_ARGS=(--doh-url "https://1.1.1.1/dns-query")
+ENABLE_CLEANUP=true
+SILENT_MODE=false
+
+usage() {
+    echo "用法: $(basename "$0") [-k] [-s] [-h]"
+    echo "  -k  (Keep)    保留模式：不清理旧壁纸"
+    echo "  -s  (Silent)  静默模式：不发送任何桌面通知"
+    echo "  -h  帮助信息"
+    exit 0
+}
+
+while getopts "ksh" opt; do
+  case $opt in
+    k) ENABLE_CLEANUP=false ;;
+    s) SILENT_MODE=true ;;
+    h) usage ;;
+    *) usage ;;
+  esac
+done
+
+send_notify() {
+    if [ "$SILENT_MODE" = true ]; then
+        return 0
+    fi
+
+    if command -v notify-send > /dev/null 2>&1; then
+        notify-send "$1" "$2" ${3:-}
+    elif command -v gdbus > /dev/null 2>&1; then
+        gdbus call --session \
+            --dest org.freedesktop.Notifications \
+            --object-path /org/freedesktop/Notifications \
+            --method org.freedesktop.Notifications.Notify \
+            "Wallpaper" 0 "" "$1" "$2" "[]" "{}" 5000 > /dev/null 2>&1 || true
+    fi
+}
+
+on_error() {
+    local exit_code=$?
+    [ -n "${NOTIFY_PID:-}" ] && kill "$NOTIFY_PID" 2>/dev/null || true
+    send_notify "Wallpaper Error" "${WALLPAPER_SOURCE_NAME} wallpaper update failed" "--expire-time=7000"
+    exit "$exit_code"
+}
+
+trap on_error ERR
+
+urlencode() {
+    jq -nr --arg value "$1" '$value|@uri'
+}
+
+get_yandere_image_url() {
+    local encoded_tags page api_response image_url attempt
+
+    encoded_tags=$(urlencode "$API_TAGS")
+
+    for attempt in $(seq 1 "$API_RETRY_COUNT"); do
+        if [ "$attempt" -eq "$API_RETRY_COUNT" ]; then
+            page=1
+        else
+            page=$((RANDOM % API_MAX_PAGE + 1))
+        fi
+
+        api_response=$(curl "${CURL_DOH_ARGS[@]}" -L -s -A "$USER_AGENT" --connect-timeout 10 -m 30 \
+            "${API_URL}?limit=${API_LIMIT}&page=${page}&tags=${encoded_tags}") || continue
+
+        image_url=$(jq -r '
+            [
+                .[]
+                | select(.file_url? and .file_url != "")
+                | select((.rating // "") == "e")
+                | select((.tags // "") | test("(^| )(loli|shota|child|children)( |$)") | not)
+                | .file_url
+            ]
+            | if length == 0 then empty else .[(now|floor) % length] end
+        ' <<< "$api_response")
+
+        if [[ "$image_url" =~ ^https?:// ]]; then
+            printf '%s\n' "$image_url"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+mkdir -p "$SAVE_DIR"
+TIMESTAMP=$(date +%s)
+RAW_PATH="${SAVE_DIR}/${FILE_PREFIX}-${TIMESTAMP}_raw.tmp"
+FINAL_PATH="${SAVE_DIR}/${FILE_PREFIX}-${TIMESTAMP}.png"
+
+if ! command -v jq > /dev/null 2>&1; then
+    send_notify "Wallpaper Error" "jq not found. Please install it."
+    exit 1
+fi
+
+if [ "$SILENT_MODE" = false ] && command -v notify-send > /dev/null 2>&1; then
+    (
+        sleep 8
+        while true; do
+            notify-send "Wallpaper" "Downloading is still in progress..." --expire-time=5000 --icon=drive-harddisk --replace-id=999 || true
+            sleep 8
+        done
+    ) &
+    NOTIFY_PID=$!
+else
+    NOTIFY_PID=""
+fi
+
+send_notify "Wallpaper" "Downloading ${WALLPAPER_SOURCE_NAME} wallpaper..." "--expire-time=5000"
+
+USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+IMAGE_URL=$(get_yandere_image_url || true)
+if [[ ! "$IMAGE_URL" =~ ^https?:// ]]; then
+    [ -n "${NOTIFY_PID:-}" ] && kill "$NOTIFY_PID" 2>/dev/null || true
+    send_notify "Wallpaper Error" "Failed to get image URL from yande.re"
+    exit 1
+fi
+
+if ! curl "${CURL_DOH_ARGS[@]}" -L -s -A "$USER_AGENT" --connect-timeout 10 -m 120 -o "$RAW_PATH" "$IMAGE_URL"; then
+    [ -n "${NOTIFY_PID:-}" ] && kill "$NOTIFY_PID" 2>/dev/null || true
+    send_notify "Wallpaper Error" "Download failed (Network/API Error)"
+    exit 1
+fi
+
+if [ -n "${NOTIFY_PID:-}" ]; then
+    kill "$NOTIFY_PID" 2>/dev/null || true
+fi
+
+if [ ! -f "$RAW_PATH" ] || [ "$(wc -c < "$RAW_PATH")" -lt 20480 ]; then
+    send_notify "Wallpaper Error" "Download failed (File too small/Invalid)"
+    rm -f "$RAW_PATH"
+    exit 1
+fi
+
+FILE_TYPE=$(file --mime-type -b "$RAW_PATH" || echo "unknown")
+if [[ "$FILE_TYPE" != image/* ]]; then
+    send_notify "Wallpaper Error" "Not an image file ($FILE_TYPE)"
+    rm -f "$RAW_PATH"
+    exit 1
+fi
+
+if command -v magick > /dev/null 2>&1; then
+    IMG_TOOL="magick"
+elif command -v convert > /dev/null 2>&1; then
+    IMG_TOOL="convert"
+else
+    send_notify "Wallpaper Error" "ImageMagick not found. Please install it."
+    rm -f "$RAW_PATH"
+    exit 1
+fi
+
+if ! $IMG_TOOL "$RAW_PATH" "$FINAL_PATH"; then
+    send_notify "Wallpaper Error" "Failed to convert image to PNG format"
+    rm -f "$RAW_PATH" "$FINAL_PATH"
+    exit 1
+fi
+
+rm -f "$RAW_PATH"
+
+if ! command -v caelestia > /dev/null 2>&1; then
+    send_notify "Wallpaper Error" "Caelestia CLI not found. Please install caelestia-cli."
+    exit 1
+fi
+
+caelestia wallpaper -f "$FINAL_PATH"
+
+(
+    if [ -x "$HOME/.config/scripts/matugen-update.sh" ]; then
+        "$HOME/.config/scripts/matugen-update.sh" "$FINAL_PATH" > /dev/null || true
+    fi
+
+    sleep 0.5
+
+    if [ -x "$HOME/.config/scripts/niri_set_overview_blur_dark_bg.sh" ]; then
+        "$HOME/.config/scripts/niri_set_overview_blur_dark_bg.sh" > /dev/null || true
+    fi
+
+    if [ "$ENABLE_CLEANUP" = true ]; then
+        DELETE_START=$((KEEP_COUNT + 1))
+        find "$SAVE_DIR" -maxdepth 1 -type f -name "${FILE_PREFIX}-*.png" -printf '%T@ %p\n' \
+            | sort -nr | tail -n +"$DELETE_START" | cut -d' ' -f2- | xargs -r rm -- || true
+    fi
+) &
+
+send_notify "Wallpaper Updated" "${WALLPAPER_SOURCE_NAME} PNG applied successfully via Caelestia!" "--expire-time=5000"

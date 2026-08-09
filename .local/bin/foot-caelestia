@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+foot_args=()
+
+while (($#)); do
+    if [[ $1 == -e ]]; then
+        shift
+        exec foot "${foot_args[@]}" -e fish -ic 'exec $argv' -- "$@"
+    fi
+
+    foot_args+=("$1")
+    shift
+done
+
+exec foot "${foot_args[@]}"

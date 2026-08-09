@@ -5,6 +5,7 @@ Backup of my Caelestia theme templates and Hyprland configuration.
 ## Contents
 
 - `.config/caelestia/`: Caelestia settings, theme templates, synchronization scripts, and Hyprland user overrides.
+- `.config/fish/functions/`: Selected personal Fastfetch wallpaper helper functions.
 - `.config/hypr/`: Lua-based Hyprland configuration and generated colour-scheme integration.
 - `.local/bin/`: Personal Caelestia wallpaper and terminal helper scripts.
 - `.local/share/icons/Papirus-caelestia-dark/`: Custom Caelestia-generated Papirus icon theme.
@@ -15,6 +16,8 @@ Clone the repository, then copy the backed-up configuration into the home direct
 
 ```bash
 cp -a .config/caelestia ~/.config/
+mkdir -p ~/.config/fish/functions
+cp -a .config/fish/functions/. ~/.config/fish/functions/
 cp -a .config/hypr ~/.config/
 mkdir -p ~/.local/bin
 cp -a .local/bin/. ~/.local/bin/

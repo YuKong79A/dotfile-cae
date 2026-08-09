@@ -11,6 +11,7 @@ Backup of my Caelestia theme templates and Hyprland configuration.
 - `.config/hypr/`: Lua-based Hyprland configuration and generated colour-scheme integration.
 - `.config/starship.toml`: Starship prompt configuration generated from the Caelestia theme template.
 - `.config/xdg-terminals.list`: Preferred XDG terminal order, with the Caelestia-aware Foot launcher first.
+- `.config/yazi/`: Yazi theme selection and the rendered Caelestia flavor.
 - `.local/bin/`: Personal Caelestia wallpaper and terminal helper scripts.
 - `.local/share/applications/foot-caelestia.desktop`: Desktop entry for launching Foot with an interactive Fish environment.
 - `.local/share/icons/Papirus-caelestia-dark/`: Custom Caelestia-generated Papirus icon theme.
@@ -28,6 +29,7 @@ cp -a .config/fastfetch ~/.config/
 cp -a .config/hypr ~/.config/
 cp -a .config/starship.toml ~/.config/
 cp -a .config/xdg-terminals.list ~/.config/
+cp -a .config/yazi ~/.config/
 mkdir -p ~/.local/bin
 cp -a .local/bin/. ~/.local/bin/
 mkdir -p ~/.local/share/applications

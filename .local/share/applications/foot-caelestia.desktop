@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Foot (Caelestia environment)
+GenericName=Terminal
+Comment=Foot terminal with the interactive Fish environment for launched commands
+Exec=/home/yukong/.local/bin/foot-caelestia
+Icon=foot
+Terminal=false
+Categories=System;TerminalEmulator;
+Keywords=shell;prompt;command;commandline;
+X-TerminalArgExec=-e
+X-TerminalArgTitle=-T
+X-TerminalArgAppId=-a
+X-TerminalArgDir=-D
+X-TerminalArgHold=-H

@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+caelestia_config="${XDG_CONFIG_HOME:-$HOME/.config}/caelestia/shell.json"
+hypr_vars="${XDG_CONFIG_HOME:-$HOME/.config}/caelestia/hypr-vars.lua"
+foot_config="${XDG_CONFIG_HOME:-$HOME/.config}/foot/foot.ini"
+
+if grep -Eq 'windowOpacity[[:space:]]*=[[:space:]]*1([.]0+)?,' "$hypr_vars"; then
+    caelestia_enabled=true
+    caelestia_alpha=0.8013157894736842
+    hypr_alpha=0.8
+    foot_alpha=0.78
+    mode="透明"
+else
+    caelestia_enabled=false
+    caelestia_alpha=1
+    hypr_alpha=1.0
+    foot_alpha=1.0
+    mode="不透明"
+fi
+
+caelestia_tmp="$(mktemp "${caelestia_config}.XXXXXX")"
+jq \
+    --argjson enabled "$caelestia_enabled" \
+    --argjson alpha "$caelestia_alpha" \
+    '.appearance.transparency.enabled = $enabled | .appearance.transparency.base = $alpha' \
+    "$caelestia_config" > "$caelestia_tmp"
+chmod --reference="$caelestia_config" "$caelestia_tmp"
+mv "$caelestia_tmp" "$caelestia_config"
+
+sed -Ei "s/(windowOpacity[[:space:]]*=[[:space:]]*)[0-9.]+,/\\1${hypr_alpha},/" "$hypr_vars"
+sed -Ei "s/^alpha[[:space:]]*=.*/alpha=${foot_alpha}/" "$foot_config"
+
+hyprctl reload >/dev/null
+pkill -USR1 -x foot 2>/dev/null || true
+notify-send -a Caelestia "透明度" "已切换为${mode}模式" 2>/dev/null || true

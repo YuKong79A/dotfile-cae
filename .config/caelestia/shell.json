@@ -7,8 +7,8 @@
     "appearance": {
         "islands": false,
         "transparency": {
-            "base": 0.8013157894736842,
-            "enabled": true
+            "base": 1,
+            "enabled": false
         }
     },
     "background": {
@@ -45,7 +45,7 @@
                 "id": "workspaces"
             },
             {
-                "enabled": false,
+                "enabled": true,
                 "id": "github"
             },
             {
@@ -111,11 +111,33 @@
         }
     },
     "dashboard": {
-        "profilePicShape": 8
+        "colorizeMediaGif": true,
+        "profilePicShape": 19,
+        "randomizeMediaShapeColors": false,
+        "replaceMediaLyricsWithVisuals": false,
+        "showHyprlandSplash": true,
+        "syncMediaShapesToBeat": false,
+        "useMediaShapes": false
+    },
+    "general": {
+        "idle": {
+            "inhibitWhenAudio": true,
+            "lockBeforeSleep": true,
+            "timeouts": [
+                {
+                    "idleAction": "lock",
+                    "timeout": 180
+                },
+                {
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on",
+                    "timeout": 300
+                }
+            ]
+        }
     },
     "launcher": {
         "favouriteApps": [
-            "wechat-universal"
         ]
     },
     "lock": {

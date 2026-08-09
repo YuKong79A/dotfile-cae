@@ -1,0 +1,25 @@
+{
+    "settings": {
+        "avatarShape": 19,
+        "avatarShapeName": "Cookie 9-Sided",
+        "lavaLampEnabled": true,
+        "schemeFlavour": "default",
+        "schemeMode": "dark",
+        "schemeName": "caelestia",
+        "use12Hour": false,
+        "use12h": false
+    },
+    "userSessions": {
+    },
+    "userSettings": {
+        "yukong": {
+            "avatarShape": 19,
+            "avatarShapeName": "Cookie 9-Sided",
+            "lavaLampEnabled": true,
+            "schemeFlavour": "default",
+            "schemeMode": "dark",
+            "schemeName": "caelestia",
+            "use12Hour": false
+        }
+    }
+}

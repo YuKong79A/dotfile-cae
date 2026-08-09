@@ -1,0 +1,43 @@
+{
+  "theme": {
+    "iconTheme": "Papirus-caelestia-dark",
+    "iconThemeDark": "Papirus-caelestia-dark",
+    "iconThemeLight": "Papirus-Light",
+    "postHook": "bash ~/.config/caelestia/scripts/sync-fcitx5-theme.sh && bash ~/.config/caelestia/scripts/sync-papirus-icons.sh && bash ~/.config/caelestia/scripts/sync-fastfetch-theme.sh && bash ~/.config/caelestia/scripts/sync-starship-theme.sh && bash ~/.config/caelestia/scripts/sync-cava-theme.sh && bash ~/.config/caelestia/scripts/sync-bat-theme.sh && bash ~/.config/caelestia/scripts/sync-yazi-theme.sh"
+  },
+  "toggles": {
+    "communication": {
+      "discord": {
+        "enable": false
+      },
+      "whatsapp": {
+        "enable": false
+      }
+    },
+    "music": {
+      "feishin": {
+        "enable": false
+      },
+      "cnmplayer": {
+        "enable": true,
+        "match": [
+          {
+            "class": "cnmplayer"
+          }
+        ],
+        "command": [
+          "foot",
+          "-a",
+          "cnmplayer",
+          "-T",
+          "cnmplayer",
+          "-e",
+          "fish",
+          "-ic",
+          "exec cnmplayer"
+        ],
+        "move": true
+      }
+    }
+  }
+}

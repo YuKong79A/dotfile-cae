@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <path style="fill:#{{ surface.hex }};stroke:#{{ outlineVariant.hex }};stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round"
+    d="m 16.487805,4.4878049 h 15.024391 c 8.461953,0 12,3.3636279 12,12.0000001 v 15.024391 c 0,8.392186 -3.398512,12 -12,12 H 16.487805 c -8.3921861,0 -12.0000001,-3.538047 -12.0000001,-12 V 16.487805 c 0,-8.6363722 3.4682791,-12.0000001 12.0000001,-12.0000001 z" />
+</svg>

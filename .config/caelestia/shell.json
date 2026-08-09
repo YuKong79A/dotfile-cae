@@ -1,0 +1,191 @@
+{
+    "ai": {
+        "defaultOllamaModel": "mistral",
+        "enableOllama": false,
+        "ollamaHistoryJson": "[]"
+    },
+    "appearance": {
+        "islands": false,
+        "transparency": {
+            "base": 0.8013157894736842,
+            "enabled": true
+        }
+    },
+    "background": {
+        "desktopClock": {
+            "enabled": false
+        },
+        "desktopLyrics": {
+            "enabled": true,
+            "invertColors": true,
+            "scale": 1
+        },
+        "videoWallpaperPaused": false,
+        "visualiser": {
+            "enabled": true
+        }
+    },
+    "bar": {
+        "activeWindow": {
+            "compact": true,
+            "inverted": false,
+            "showOnHover": true
+        },
+        "clock": {
+            "background": false,
+            "showDate": true
+        },
+        "entries": [
+            {
+                "enabled": true,
+                "id": "logo"
+            },
+            {
+                "enabled": true,
+                "id": "workspaces"
+            },
+            {
+                "enabled": false,
+                "id": "github"
+            },
+            {
+                "enabled": true,
+                "id": "spotify"
+            },
+            {
+                "enabled": true,
+                "id": "spacer"
+            },
+            {
+                "enabled": true,
+                "id": "activeWindow"
+            },
+            {
+                "enabled": true,
+                "id": "spacer"
+            },
+            {
+                "enabled": true,
+                "id": "tray"
+            },
+            {
+                "enabled": true,
+                "id": "clock"
+            },
+            {
+                "enabled": true,
+                "id": "statusIcons"
+            },
+            {
+                "enabled": true,
+                "id": "power"
+            }
+        ],
+        "github": {
+            "background": true
+        },
+        "popouts": {
+            "activeWindow": true,
+            "tray": true
+        },
+        "position": "left",
+        "showOnHover": true,
+        "spotify": {
+            "background": true,
+            "horizontalVolume": true,
+            "inverted": false,
+            "maxTitleLength": 25,
+            "showVisualiser": true
+        },
+        "tray": {
+            "background": false,
+            "compact": true,
+            "recolour": true
+        },
+        "workspaces": {
+            "activeTrail": false,
+            "occupiedBg": false,
+            "showWindows": true,
+            "showWindowsOnSpecialWorkspaces": true,
+            "useIcon": true
+        }
+    },
+    "dashboard": {
+        "profilePicShape": 8
+    },
+    "launcher": {
+        "favouriteApps": [
+            "wechat-universal"
+        ]
+    },
+    "lock": {
+        "profilePicShape": 12
+    },
+    "services": {
+        "pipPaused": false,
+        "weatherLocation": "Tangshan, China"
+    },
+    "shimeji": {
+        "enabled": false
+    },
+    "utilities": {
+        "gameMode": {
+            "autoEnableRegexes": [
+                "steam_app_default"
+            ]
+        },
+        "quickToggles": [
+            {
+                "enabled": true,
+                "id": "wifi"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": false,
+                "id": "quickshare"
+            },
+            {
+                "enabled": true,
+                "id": "mic"
+            },
+            {
+                "enabled": true,
+                "id": "settings"
+            },
+            {
+                "enabled": true,
+                "id": "gameMode"
+            },
+            {
+                "enabled": true,
+                "id": "dnd"
+            },
+            {
+                "enabled": false,
+                "id": "vpn"
+            },
+            {
+                "enabled": true,
+                "id": "wallpaper"
+            },
+            {
+                "enabled": true,
+                "id": "badapple"
+            },
+            {
+                "enabled": true,
+                "id": "pauseWallpaper"
+            },
+            {
+                "enabled": true,
+                "id": "pipPause"
+            }
+        ],
+        "toasts": {
+            "transparency": true
+        }
+    }
+}

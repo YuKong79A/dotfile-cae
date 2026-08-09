@@ -1,0 +1,56 @@
+:root {
+    --theme-color: "Matugen";
+    --hue-rotate: 220deg;
+
+    /* Primary colors */
+    --md-sys-color-primary: #{{ primary.hex }};
+    --md-sys-color-on-primary: #{{ onPrimary.hex }};
+    --md-sys-color-primary-container: #{{ primaryContainer.hex }};
+    --md-sys-color-on-primary-container: #{{ onPrimaryContainer.hex }};
+
+    /* Secondary colors */
+    --md-sys-color-secondary: #{{ secondary.hex }};
+    --md-sys-color-on-secondary: #{{ onSecondary.hex }};
+    --md-sys-color-secondary-container: #{{ secondaryContainer.hex }};
+    --md-sys-color-on-secondary-container: #{{ onSecondaryContainer.hex }};
+
+    /* Tertiary colors */
+    --md-sys-color-tertiary: #{{ tertiary.hex }};
+    --md-sys-color-on-tertiary: #{{ onTertiary.hex }};
+    --md-sys-color-tertiary-container: #{{ tertiaryContainer.hex }};
+    --md-sys-color-on-tertiary-container: #{{ onTertiaryContainer.hex }};
+
+    /* Error colors */
+    --md-sys-color-error: #{{ error.hex }};
+    --md-sys-color-on-error: #{{ onError.hex }};
+    --md-sys-color-error-container: #{{ errorContainer.hex }};
+    --md-sys-color-on-error-container: #{{ onErrorContainer.hex }};
+
+    /* Background and Surface colors */
+    --md-sys-color-background: #{{ background.hex }};
+    --md-sys-color-on-background: #{{ onBackground.hex }};
+    --md-sys-color-surface: #{{ surface.hex }};
+    --md-sys-color-on-surface: #{{ onSurface.hex }};
+    --md-sys-color-surface-variant: #{{ surfaceVariant.hex }};
+    --md-sys-color-on-surface-variant: #{{ onSurfaceVariant.hex }};
+
+    /* Surface Container colors */
+    --md-sys-color-surface-dim: #{{ surfaceDim.hex }};
+    --md-sys-color-surface-bright: #{{ surfaceBright.hex }};
+    --md-sys-color-surface-container-lowest: #{{ surfaceContainerLowest.hex }};
+    --md-sys-color-surface-container-low: #{{ surfaceContainerLow.hex }};
+    --md-sys-color-surface-container: #{{ surfaceContainer.hex }};
+    --md-sys-color-surface-container-high: #{{ surfaceContainerHigh.hex }};
+    --md-sys-color-surface-container-highest: #{{ surfaceContainerHighest.hex }};
+
+    /* Outline and utility colors */
+    --md-sys-color-outline: #{{ outline.hex }};
+    --md-sys-color-outline-variant: #{{ outlineVariant.hex }};
+    --md-sys-color-shadow: #{{ shadow.hex }};
+    --md-sys-color-scrim: #{{ scrim.hex }};
+
+    /* Inverse colors */
+    --md-sys-color-inverse-surface: #{{ inverseSurface.hex }};
+    --md-sys-color-inverse-on-surface: #{{ inverseOnSurface.hex }};
+    --md-sys-color-inverse-primary: #{{ inversePrimary.hex }};
+}

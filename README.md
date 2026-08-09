@@ -43,4 +43,20 @@ gtk-update-icon-cache -f ~/.local/share/icons/Papirus-caelestia-dark
 
 Review paths and installed dependencies before starting Hyprland. The theme synchronization scripts expect tools and applications referenced by the scripts to be installed.
 
+### Caelestia application themes
+
+The Caelestia post-hook also renders application themes from the current
+`~/.local/state/caelestia/scheme.json` palette:
+
+- **Codex CLI**: renders `~/.codex/themes/caelestia.tmTheme`. After the first
+  restore, start Codex, run `/theme`, and select `Caelestia` once.
+- **LibreOffice**: builds and installs a `Caelestia` ColorScheme extension for
+  native and Flatpak installations. In LibreOffice, select it once under
+  Tools > Options > LibreOffice > Application Colors. LibreOffice must be
+  closed while the synchronization script installs an updated extension.
+
+These integrations require `python3`, `jq`, `bsdtar`, and LibreOffice's
+`unopkg` for a native LibreOffice installation. Generated themes and extension
+caches are deliberately excluded from the backup; the post-hook recreates them.
+
 The `Exec` line in `foot-caelestia.desktop` currently uses `/home/yukong`. Update it after restoring if the new account has a different home directory.

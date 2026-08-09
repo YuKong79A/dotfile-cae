@@ -5,6 +5,7 @@ Backup of my Caelestia theme templates and Hyprland configuration.
 ## Contents
 
 - `.config/caelestia/`: Caelestia settings, theme templates, synchronization scripts, and Hyprland user overrides.
+- `.face`: User avatar used by greeters and desktop account interfaces.
 - `.config/fish/functions/`: Selected personal Fastfetch wallpaper helper functions.
 - `.config/fastfetch/`: Fastfetch layout and Caelestia colour-template configuration.
 - `.config/hypr/`: Lua-based Hyprland configuration and generated colour-scheme integration.
@@ -19,6 +20,7 @@ Backup of my Caelestia theme templates and Hyprland configuration.
 Clone the repository, then copy the backed-up configuration into the home directory:
 
 ```bash
+cp -a .face ~/.face
 cp -a .config/caelestia ~/.config/
 mkdir -p ~/.config/fish/functions
 cp -a .config/fish/functions/. ~/.config/fish/functions/

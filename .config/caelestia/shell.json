@@ -50,52 +50,42 @@
             "background": false,
             "showDate": true
         },
-        "entries": [
-            {
-                "enabled": true,
-                "id": "logo"
-            },
-            {
-                "enabled": true,
-                "id": "workspaces"
-            },
-            {
-                "enabled": false,
-                "id": "github"
-            },
-            {
-                "enabled": true,
-                "id": "spotify"
-            },
-            {
-                "enabled": true,
-                "id": "spacer"
-            },
-            {
-                "enabled": true,
-                "id": "activeWindow"
-            },
-            {
-                "enabled": true,
-                "id": "spacer"
-            },
-            {
-                "enabled": true,
-                "id": "tray"
-            },
-            {
-                "enabled": true,
-                "id": "clock"
-            },
-            {
-                "enabled": true,
-                "id": "statusIcons"
-            },
-            {
-                "enabled": true,
-                "id": "power"
-            }
-        ],
+        "entries": {
+            "center": [
+                {
+                    "enabled": true,
+                    "id": "activeWindow"
+                }
+            ],
+            "end": [
+                {
+                    "enabled": true,
+                    "id": "tray"
+                },
+                {
+                    "enabled": true,
+                    "id": "clock"
+                },
+                {
+                    "enabled": true,
+                    "id": "statusIcons"
+                },
+                {
+                    "enabled": true,
+                    "id": "power"
+                }
+            ],
+            "start": [
+                {
+                    "enabled": true,
+                    "id": "logo"
+                },
+                {
+                    "enabled": true,
+                    "id": "workspaces"
+                }
+            ]
+        },
         "github": {
             "background": true
         },

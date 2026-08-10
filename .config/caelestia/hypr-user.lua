@@ -47,6 +47,10 @@ hl.unbind("SUPER + TAB")
 hl.bind("SUPER + TAB", hl.dsp.global("caelestia:workspaceOverview"))
 
 -- Special workspaces
+hl.unbind("ALT + TAB")
+hl.bind("ALT + TAB", hl.dsp.layout("cyclenext"), { repeating = true })
+hl.unbind("SHIFT + ALT + TAB")
+hl.bind("SHIFT + ALT + TAB", hl.dsp.layout("cycleprev"), { repeating = true })
 hl.unbind("SUPER + P")
 hl.bind("SUPER + P", hl.dsp.exec_cmd("caelestia toggle steam"))
 hl.bind("SUPER + O", hl.dsp.exec_cmd("caelestia toggle on_together"))
@@ -61,7 +65,12 @@ hl.workspace_rule({ workspace = "special:sysmon", layout = "monocle" })
 hl.window_rule({ match = { class = "^(Zoom)$" }, float = true, center = true })
 hl.window_rule({ match = { class = "^Chat$" }, float = true })
 hl.window_rule({ match = { class = "^(slack|com.rtosta.zapzap)$" }, workspace = "special:communication" })
-hl.window_rule({ match = { class = "thunar", workspace = "special:communication" }, float = true, size = { 1200, 800 } })
+hl.window_rule({
+    match = { class = "^(Thunar|thunar)$" },
+    workspace = "special:communication",
+    float = true,
+    size = { 1200, 800 },
+})
 hl.window_rule({ match = { class = "Todoist|cohesion|obsidian" }, workspace = "special:todo" })
 hl.window_rule({ match = { initial_title = "On-Together" }, workspace = "special:on_together" })
 

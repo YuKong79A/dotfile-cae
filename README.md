@@ -78,10 +78,12 @@ The `Exec` line in `foot-caelestia.desktop` currently uses `/home/yukong`. Updat
   On-Together, Steam, and todo apps. The local `cnmplayer` group is retained.
 - `Super+P` toggles Steam and `Super+O` toggles On-Together.
 - `Ctrl+Super+Up/Down` cycles special workspaces.
+- `Alt+Tab` and `Shift+Alt+Tab` use monocle-aware layout cycling so windows
+  can be switched inside monocle special workspaces.
 - Codex is available on `Ctrl+Super+O`.
 - Window rules float and centre Zoom, float `Chat`, route Slack/ZapZap and todo
-  apps to their special workspaces, and size Thunar to `1200x800` when it is
-  already in `special:communication`.
+  apps to their special workspaces, and route Thunar to
+  `special:communication` as a floating `1200x800` window.
 - Caelestia shows custom icons for the Steam, Google, and On-Together special
   workspaces and a gamepad icon for Steam windows.
 

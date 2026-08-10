@@ -33,7 +33,6 @@
 - `.local/share/applications/foot-caelestia.desktop`：Caelestia Foot 桌面入口。
 - `.local/share/icons/Papirus-caelestia-dark/`：由当前 Caelestia 配色生成的 Papirus 图标主题。
 - `.face`：用户头像。
-- `docs/`：历史备份说明和对话记录，仅作参考；当前 README 的恢复要求优先。
 
 仓库当前不包含完整的软件包清单、私钥/令牌、浏览器资料、游戏数据、完整 Fish 插件目录、Kitty 配置、Google Sans Flex 字体安装器以及系统级配置。不得声称这些内容能由本仓库恢复。
 

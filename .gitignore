@@ -1,6 +1,0 @@
-# Generated and local-only files
-*.log
-*.tmp
-*~
-.DS_Store
-icon-theme.cache

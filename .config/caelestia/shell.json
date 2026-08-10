@@ -186,6 +186,7 @@
     },
     "services": {
         "pipPaused": false,
+        "useTwelveHourClock": true,
         "weatherLocation": "Tangshan, China"
     },
     "shimeji": {

@@ -14,7 +14,14 @@ command -v jq >/dev/null 2>&1 || { echo "sync-libreoffice-theme: jq is required"
 command -v bsdtar >/dev/null 2>&1 || { echo "sync-libreoffice-theme: bsdtar is required" >&2; exit 1; }
 
 scheme_hash="$(sha256sum "$scheme_file" | cut -d' ' -f1)"
-[[ -r "$stamp_file" && "$(<"$stamp_file")" == "$scheme_hash" ]] && exit 0
+scheme_mode="$(jq -er '.mode' "$scheme_file")"
+case "$scheme_mode" in
+  light) icon_style="sifr" ;;
+  dark) icon_style="sifr_dark" ;;
+  *) echo "sync-libreoffice-theme: unsupported Caelestia mode: $scheme_mode" >&2; exit 1 ;;
+esac
+sync_hash="${scheme_hash}:${icon_style}"
+[[ -r "$stamp_file" && "$(<"$stamp_file")" == "$sync_hash" ]] && exit 0
 
 if pgrep -x soffice.bin >/dev/null 2>&1; then
   echo "sync-libreoffice-theme: LibreOffice is running; close it and reapply the Caelestia theme" >&2
@@ -70,5 +77,23 @@ if command -v flatpak >/dev/null 2>&1 && flatpak info org.libreoffice.LibreOffic
 fi
 ((installed)) || { echo "sync-libreoffice-theme: no LibreOffice installation found" >&2; exit 1; }
 
+set_symbol_style() {
+  local registry_file=$1
+  [[ -f "$registry_file" ]] || return 0
+
+  SYMBOL_STYLE="$icon_style" perl -0pi -e '
+    s{(<item oor:path="/org\.openoffice\.Office\.Common/Misc"><prop oor:name="SymbolStyle" oor:op="fuse"><value>)[^<]*(</value></prop></item>)}
+     {$1 . $ENV{SYMBOL_STYLE} . $2}ge
+  ' "$registry_file"
+
+  if ! grep -q "<prop oor:name=\"SymbolStyle\" oor:op=\"fuse\"><value>${icon_style}</value>" "$registry_file"; then
+    echo "sync-libreoffice-theme: failed to set icon style in $registry_file" >&2
+    return 1
+  fi
+}
+
+set_symbol_style "${XDG_CONFIG_HOME:-$HOME/.config}/libreoffice/4/user/registrymodifications.xcu"
+set_symbol_style "$HOME/.var/app/org.libreoffice.LibreOffice/config/libreoffice/4/user/registrymodifications.xcu"
+
 mkdir -p "$state_dir"
-printf '%s\n' "$scheme_hash" > "$stamp_file"
+printf '%s\n' "$sync_hash" > "$stamp_file"

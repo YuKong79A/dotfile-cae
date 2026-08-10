@@ -1,6 +1,6 @@
 return {
     -- Apps
-    terminal                   = kitty,
+    terminal                   = "foot",
     browser                    = "helium-browser",
     fileExplorer               = "thunar",
 

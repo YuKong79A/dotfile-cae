@@ -156,6 +156,11 @@
         "useMediaShapes": false
     },
     "general": {
+        "apps": {
+            "terminal": [
+                "foot"
+            ]
+        },
         "idle": {
             "inhibitWhenAudio": true,
             "lockBeforeSleep": true,

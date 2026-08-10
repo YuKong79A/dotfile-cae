@@ -12,7 +12,7 @@ Kitty setup, and personal helper scripts.
 - `.config/hypr/`: Lua-based Hyprland configuration and generated colour-scheme integration.
 - `.config/kitty/`: Kitty configuration plus the custom split-window search kitten.
 - `.config/starship.toml`: Starship prompt configuration generated from the Caelestia theme template.
-- `.config/xdg-terminals.list`: Preferred XDG terminal order, with the Caelestia-aware Foot launcher first.
+- `.config/xdg-terminals.list`: Preferred XDG terminal order, with Caelestia-aware Foot first and Kitty as fallback.
 - `.config/yazi/`: Yazi theme selection and the rendered Caelestia flavor.
 - `.local/bin/`: Personal Caelestia wallpaper and terminal helper scripts.
 - `.local/bin/install-google-sans-flex`: Installs the complete Google Sans Flex
@@ -119,7 +119,8 @@ Clear it with `cliphist wipe` when needed.
 
 ### Kitty
 
-Kitty uses Fish, JetBrains Mono Nerd Font at size 12, 85% background opacity,
+Foot is the default terminal for Hyprland, Caelestia, and XDG terminal
+launching. Kitty remains available as an alternative and uses Fish, JetBrains Mono Nerd Font at size 12, 85% background opacity,
 cursor trail, 21.75px margins, and no close confirmation. `Ctrl+F` opens the
 vendored search kitten in a horizontal split. Page Up/Down scroll and
 Ctrl+Plus/Minus/0 adjust the font size.

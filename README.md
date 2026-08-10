@@ -82,8 +82,8 @@ The `Exec` line in `foot-caelestia.desktop` currently uses `/home/yukong`. Updat
   can be switched inside monocle special workspaces.
 - Codex is available on `Ctrl+Super+O`.
 - Window rules float and centre Zoom, float `Chat`, route Slack/ZapZap and todo
-  apps to their special workspaces, and route Thunar to
-  `special:communication` as a floating `1200x800` window.
+  apps to their special workspaces, and make Thunar floating at `1200x800`
+  only when it is already in `special:communication`.
 - Caelestia shows custom icons for the Steam, Google, and On-Together special
   workspaces and a gamepad icon for Steam windows.
 

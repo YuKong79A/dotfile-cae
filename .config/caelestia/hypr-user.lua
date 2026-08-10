@@ -66,8 +66,10 @@ hl.window_rule({ match = { class = "^(Zoom)$" }, float = true, center = true })
 hl.window_rule({ match = { class = "^Chat$" }, float = true })
 hl.window_rule({ match = { class = "^(slack|com.rtosta.zapzap)$" }, workspace = "special:communication" })
 hl.window_rule({
-    match = { class = "^(Thunar|thunar)$" },
-    workspace = "special:communication",
+    match = {
+        class = "^(Thunar|thunar)$",
+        workspace = "special:communication",
+    },
     float = true,
     size = { 1200, 800 },
 })

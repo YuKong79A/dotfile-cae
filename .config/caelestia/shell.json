@@ -5,10 +5,25 @@
         "ollamaHistoryJson": "[]"
     },
     "appearance": {
+        "font": {
+            "clock": "GoogleSansFlex",
+            "headline": {
+                "family": "GoogleSansFlex",
+                "small": {
+                    "italic": false,
+                    "size": 24,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                }
+            },
+            "scale": 1
+        },
         "islands": false,
         "transparency": {
-            "base": 1,
-            "enabled": false
+            "base": 0.8013157894736842,
+            "enabled": true
         }
     },
     "background": {
@@ -45,7 +60,7 @@
                 "id": "workspaces"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "github"
             },
             {
@@ -91,6 +106,7 @@
         "position": "left",
         "showOnHover": true,
         "spotify": {
+            "autoHide": true,
             "background": true,
             "horizontalVolume": true,
             "inverted": false,
@@ -107,7 +123,27 @@
             "occupiedBg": false,
             "showWindows": true,
             "showWindowsOnSpecialWorkspaces": true,
-            "useIcon": true
+            "specialWorkspaceIcons": [
+                {
+                    "icon": "sports_esports",
+                    "name": "steam"
+                },
+                {
+                    "icon": "calendar_today",
+                    "name": "google"
+                },
+                {
+                    "icon": "diversity_2",
+                    "name": "on_together"
+                }
+            ],
+            "useIcon": true,
+            "windowIcons": [
+                {
+                    "icon": "sports_esports",
+                    "regex": "steam(_app_(default|[0-9]+))?"
+                }
+            ]
         }
     },
     "dashboard": {

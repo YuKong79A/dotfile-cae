@@ -3,20 +3,53 @@
     "iconTheme": "Papirus-caelestia-dark",
     "iconThemeDark": "Papirus-caelestia-dark",
     "iconThemeLight": "Papirus-Light",
-    "postHook": "bash ~/.config/caelestia/scripts/sync-fcitx5-theme.sh && bash ~/.config/caelestia/scripts/sync-papirus-icons.sh && bash ~/.config/caelestia/scripts/sync-fastfetch-theme.sh && bash ~/.config/caelestia/scripts/sync-starship-theme.sh && bash ~/.config/caelestia/scripts/sync-cava-theme.sh && bash ~/.config/caelestia/scripts/sync-bat-theme.sh && bash ~/.config/caelestia/scripts/sync-yazi-theme.sh && bash ~/.config/caelestia/scripts/sync-libreoffice-theme.sh && bash ~/.config/caelestia/scripts/sync-codex-theme.sh"
+    "postHook": "bash ~/.config/caelestia/posthooks/cursor.sh && bash ~/.config/caelestia/scripts/sync-fcitx5-theme.sh && bash ~/.config/caelestia/scripts/sync-papirus-icons.sh && bash ~/.config/caelestia/scripts/sync-fastfetch-theme.sh && bash ~/.config/caelestia/scripts/sync-starship-theme.sh && bash ~/.config/caelestia/scripts/sync-cava-theme.sh && bash ~/.config/caelestia/scripts/sync-bat-theme.sh && bash ~/.config/caelestia/scripts/sync-yazi-theme.sh && bash ~/.config/caelestia/scripts/sync-libreoffice-theme.sh && bash ~/.config/caelestia/scripts/sync-codex-theme.sh"
   },
   "toggles": {
     "communication": {
       "discord": {
-        "enable": false
+        "command": ["discord"],
+        "enable": true,
+        "match": [{ "class": "discord" }],
+        "move": true
+      },
+      "slack": {
+        "enable": true,
+        "match": [{ "class": "slack" }],
+        "move": true
       },
       "whatsapp": {
         "enable": false
+      },
+      "zapzap": {
+        "enable": true,
+        "match": [{ "class": "com.rtosta.zapzap" }],
+        "move": true
+      }
+    },
+    "google": {
+      "calendar": {
+        "enable": true,
+        "match": [{ "class": "chrome-calendar.google.com__calendar-Default" }],
+        "move": true
+      },
+      "mail": {
+        "enable": true,
+        "match": [{ "class": "chrome-mail.google.com__mail_-Default" }],
+        "move": true
+      },
+      "routine": {
+        "enable": true,
+        "match": [{ "class": "Routine" }],
+        "move": true
       }
     },
     "music": {
       "feishin": {
-        "enable": false
+        "command": ["feishin"],
+        "enable": true,
+        "match": [{ "class": "feishin" }],
+        "move": true
       },
       "cnmplayer": {
         "enable": true,
@@ -36,6 +69,46 @@
           "-ic",
           "exec cnmplayer"
         ],
+        "move": true
+      },
+      "soundcloud": {
+        "enable": true,
+        "match": [{ "class": "chrome-soundcloud.com__-Default" }],
+        "move": true
+      },
+      "spotify": {
+        "enable": false
+      }
+    },
+    "on_together": {
+      "game": {
+        "enable": true,
+        "match": [{ "initialTitle": "On-Together" }],
+        "move": true
+      }
+    },
+    "steam": {
+      "steamapp": {
+        "enable": true,
+        "match": [{ "title": "Steam" }],
+        "move": true
+      }
+    },
+    "todo": {
+      "notion": {
+        "enable": true,
+        "match": [{ "class": "chrome-www.notion.so__-Default" }],
+        "move": true
+      },
+      "obsidian": {
+        "command": ["obsidian"],
+        "enable": true,
+        "match": [{ "class": "obsidian" }],
+        "move": true
+      },
+      "todoist": {
+        "enable": true,
+        "match": [{ "class": "Todoist" }],
         "move": true
       }
     }

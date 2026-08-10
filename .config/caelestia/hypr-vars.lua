@@ -1,7 +1,8 @@
 return {
     -- Apps
+    terminal                   = kitty,
     browser                    = "helium-browser",
-    fileExplorer               = thunar,
+    fileExplorer               = "thunar",
 
     -- Blur
     blurEnabled                = true,
@@ -10,7 +11,7 @@ return {
     blurInputMethods           = true,
 
     -- Window styling
-    windowOpacity              = 1.0,
+    windowOpacity              = 0.8,
 
     -- Misc
     cursorTheme                = "Bibata-Modern-Classic",

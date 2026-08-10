@@ -34,7 +34,7 @@ hl.bind("SUPER + V", hl.dsp.global("caelestia:clipboard"))
 hl.unbind("SUPER + ALT + E")
 hl.bind("SUPER + ALT + E", hl.dsp.exec_cmd(vars.terminal .. " -e fish -ic yazi"))
 hl.unbind("SUPER + O")
-hl.bind("SUPER + O", hl.dsp.exec_cmd("foot -e fish -ic codex"))
+hl.bind("CTRL + SUPER + O", hl.dsp.exec_cmd("foot -e fish -ic codex"))
 hl.unbind("SUPER + SHIFT + O")
 hl.bind("SUPER + SHIFT + O", hl.dsp.exec_cmd("/home/yukong/.local/bin/toggle-transparency"))
 hl.unbind("SUPER + W")
@@ -45,6 +45,25 @@ hl.unbind("SUPER + ALT + W")
 hl.bind("SUPER + ALT + W", hl.dsp.global("caelestia:wallpaper"))
 hl.unbind("SUPER + TAB")
 hl.bind("SUPER + TAB", hl.dsp.global("caelestia:workspaceOverview"))
+
+-- Special workspaces
+hl.unbind("SUPER + P")
+hl.bind("SUPER + P", hl.dsp.exec_cmd("caelestia toggle steam"))
+hl.bind("SUPER + O", hl.dsp.exec_cmd("caelestia toggle on_together"))
+hl.bind("CTRL + SUPER + UP", hl.dsp.exec_cmd("caelestia shell hypr cycleSpecialWorkspace prev"))
+hl.bind("CTRL + SUPER + DOWN", hl.dsp.exec_cmd("caelestia shell hypr cycleSpecialWorkspace next"))
+
+hl.workspace_rule({ workspace = "special:special", layout = "scrolling" })
+hl.workspace_rule({ workspace = "special:communication", layout = "monocle" })
+hl.workspace_rule({ workspace = "special:music", layout = "monocle" })
+hl.workspace_rule({ workspace = "special:sysmon", layout = "monocle" })
+
+hl.window_rule({ match = { class = "^(Zoom)$" }, float = true, center = true })
+hl.window_rule({ match = { class = "^Chat$" }, float = true })
+hl.window_rule({ match = { class = "^(slack|com.rtosta.zapzap)$" }, workspace = "special:communication" })
+hl.window_rule({ match = { class = "thunar", workspace = "special:communication" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "Todoist|cohesion|obsidian" }, workspace = "special:todo" })
+hl.window_rule({ match = { initial_title = "On-Together" }, workspace = "special:on_together" })
 
 -- Wallpapers
 hl.unbind("SUPER + F10")
@@ -64,4 +83,16 @@ hl.bind("SUPER + SHIFT + F12", hl.dsp.exec_cmd("/home/yukong/.local/bin/random-y
 hl.on("hyprland.start", function()
     hl.exec_cmd("fcitx5 -d")
     hl.exec_cmd("flclash")
+    hl.exec_cmd("arch-update --tray")
+    hl.exec_cmd("/home/yukong/.config/caelestia/scripts/copy.sh")
 end)
+
+-- Dynamic cursor plugin
+if hl.plugin.dynamic_cursors then
+    hl.config({ plugin = { dynamic_cursors = {
+        enabled = true,
+        mode = "none",
+    } } })
+
+    hl.bind("SUPER + CTRL + Z", hl.plugin.dynamic_cursors.dsp_magnify({ duration = 2000, size = 4.0 }))
+end

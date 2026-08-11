@@ -1,51 +1,55 @@
 # dotfile-cae
 
-这是 YuKong 的 CachyOS/Arch Linux、Hyprland 和 Caelestia 桌面配置备份。
+This repository backs up YuKong's CachyOS/Arch Linux desktop configuration for Hyprland and Caelestia.
 
-本文件主要写给 Codex：用户重装系统后如果只提供本仓库地址，请先完整阅读本文，检查新系统的实际状态，再执行恢复。仓库内容是配置来源，但不要假设软件包、系统服务、用户名、挂载布局或硬件与备份时完全一致。
+This document is written primarily for Codex. If the user provides only this repository URL after reinstalling the system, read this file in full, inspect the actual state of the new system, and only then begin restoration. Treat the repository as the configuration source, but do not assume that packages, system services, the username, mount layout, or hardware are identical to the source machine.
 
-## Codex 恢复任务
+## Codex Restoration Task
 
-目标是把仓库中保存的用户级配置安全恢复到当前用户的 home，同时保留新系统中不属于本仓库的文件。
+The goal is to restore the user-level configuration stored in this repository into the current user's home directory while preserving files on the new system that are outside the repository.
 
-必须遵守：
+The following rules are mandatory:
 
-1. 不要删除、清空或重置整个 home。
-2. 不要使用 `git reset --hard`、`git clean` 或递归删除来完成恢复。
-3. 先检查用户名、`$HOME`、发行版、当前桌面、仓库内容和已安装依赖。
-4. 覆盖任何已有配置前，先将冲突路径备份到带时间戳的目录，并向用户报告备份位置。
-5. 只恢复仓库实际跟踪的文件；不要处理仓库中不存在的其他 home 文件。
-6. `/etc`、`/boot`、PAM、显示管理器、Btrfs、Snapper 和软件安装属于独立的系统级工作，必须检查后单独处理，不要从本仓库的用户配置推断其已完成。
-7. 需要 root 权限、安装软件包或改变服务状态时，明确说明操作并取得用户授权。
-8. 恢复后执行本文的验证，不要只根据复制命令成功就宣称桌面已经恢复。
+1. Do not delete, empty, or reset the entire home directory.
+2. Do not use `git reset --hard`, `git clean`, or recursive deletion as a restoration method.
+3. Inspect the username, `$HOME`, distribution, current desktop, repository contents, and installed dependencies first.
+4. Before overwriting any existing configuration, back up conflicting paths to a timestamped directory and report its location to the user.
+5. Restore only files actually tracked by the repository. Do not modify unrelated files that are absent from the repository.
+6. Treat `/etc`, `/boot`, PAM, display managers, Btrfs, Snapper, and package installation as separate system-level work. Inspect and handle them independently; never infer that they were restored from user-level files.
+7. Explain the intended action and obtain user approval before using root privileges, installing packages, or changing service state.
+8. Run the validation described in this document after restoration. A successful copy command alone does not prove that the desktop is restored.
 
-## 当前备份范围
+## Current Backup Scope
 
-仓库当前包含：
+The repository currently includes:
 
-- `.codex/skills/restore-dotfile-cae/`：Codex 恢复技能，包含安全流程和“默认只读、确认后执行”的已跟踪文件恢复助手。
-- `.config/caelestia/`：Caelestia CLI、Shell、主题模板、同步脚本、显示器配置和 Hyprland 用户覆盖。
-- `.config/hypr/`：Lua 形式的 Hyprland 配置、窗口规则、快捷键和当前生成的配色。
-- `.config/foot/foot.ini`：默认终端 Foot，Fish shell，JetBrains Mono Nerd Font，暗色背景透明度 `0.78`。
-- `.config/fish/functions/`：选定的壁纸/Fastfetch 辅助函数；不是完整 Fish 配置备份。
-- `.config/fastfetch/`、`.config/starship.toml`、`.config/yazi/`：Caelestia 联动主题及配置。
-- `.config/xdg-terminals.list`：XDG 终端优先级。
-- `.local/bin/`：个人壁纸、终端和透明度辅助脚本。
-- `.local/share/applications/foot-caelestia.desktop`：Caelestia Foot 桌面入口。
-- `.local/share/icons/Papirus-caelestia-dark/`：由当前 Caelestia 配色生成的 Papirus 图标主题。
-- `.face`：用户头像。
+- `.codex/skills/restore-dotfile-cae/`: a Codex restoration skill with a safety-focused workflow and a tracked-file restore helper that defaults to read-only mode and applies changes only after confirmation.
+- `.config/caelestia/`: Caelestia CLI and Shell configuration, theme templates, synchronization scripts, monitor configuration, and Hyprland user overrides.
+- `.config/hypr/`: Lua-based Hyprland configuration, window rules, key bindings, and the currently generated color scheme.
+- `.config/foot/foot.ini`: Foot as the default terminal, Fish as the shell, JetBrains Mono Nerd Font, and dark-background opacity set to `0.78`.
+- `.config/fish/functions/`: selected wallpaper and Fastfetch helper functions; this is not a complete Fish configuration backup.
+- `.config/fastfetch/`, `.config/starship.toml`, and `.config/yazi/`: configuration and themes integrated with Caelestia.
+- `.config/xdg-terminals.list`: XDG terminal preference order.
+- `.local/bin/`: personal wallpaper, terminal, and transparency helper scripts.
+- `.local/share/applications/foot-caelestia.desktop`: the Caelestia-aware Foot desktop entry.
+- `.local/share/icons/Papirus-caelestia-dark/`: the Papirus icon theme generated from the current Caelestia color scheme.
+- `.face`: the user's profile image.
 
-仓库当前不包含完整的软件包清单、私钥/令牌、浏览器资料、游戏数据、完整 Fish 插件目录、Kitty 配置、Google Sans Flex 字体安装器以及系统级配置。不得声称这些内容能由本仓库恢复。
+The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, the complete Fish plugin directory, Kitty configuration, the Google Sans Flex installer, or system-level configuration. Do not claim that these items can be restored from this repository.
 
 ## Codex Skill
 
-仓库内置 `.codex/skills/restore-dotfile-cae/`。完整恢复后 Codex 会从默认技能目录发现它；也可以在重装后直接让 Codex 从 `https://github.com/YuKong79A/dotfile-cae/tree/main/.codex/skills/restore-dotfile-cae` 安装技能，再调用 `$restore-dotfile-cae`。技能必须先执行只读预检，列出冲突路径、备份目录、缺失依赖和系统级操作；只有用户确认后才复制文件或执行安装、提权操作。
+The repository includes `.codex/skills/restore-dotfile-cae/`. Codex will discover it from the default skill directory after a complete restoration. Alternatively, after reinstalling the system, ask Codex to install the skill directly from:
 
-## 推荐恢复流程
+`https://github.com/YuKong79A/dotfile-cae/tree/main/.codex/skills/restore-dotfile-cae`
 
-以下命令是流程参考。Codex 应根据实际用户名和 home 路径调整变量，逐步执行并检查结果，不要盲目整段粘贴。
+Then invoke `$restore-dotfile-cae`. The skill must first perform a read-only preflight and report conflicting paths, the backup directory, missing dependencies, and proposed system-level operations. It may copy files or perform installation or privileged actions only after the user confirms the plan.
 
-### 1. 检查环境
+## Recommended Restoration Workflow
+
+The commands below are workflow references. Codex must adapt variables to the actual username and home path, execute them in stages, and inspect the results instead of pasting the entire sequence blindly.
+
+### 1. Inspect the environment
 
 ```bash
 id
@@ -56,9 +60,9 @@ command -v caelestia
 command -v hyprctl
 ```
 
-确认目标用户通常为 `yukong`、home 通常为 `/home/yukong`。如果不同，必须检查仓库中的绝对路径并进行有针对性的替换，不能直接照搬 `/home/yukong`。
+The expected target account is usually `yukong`, with `/home/yukong` as its home directory. If either value differs, inspect absolute paths in the repository and make only targeted replacements. Do not copy `/home/yukong` paths blindly.
 
-### 2. 临时克隆，不要直接克隆覆盖 home
+### 2. Clone into a temporary directory, not over the home directory
 
 ```bash
 restore_root=$(mktemp -d /tmp/dotfile-cae-restore.XXXXXX)
@@ -66,27 +70,27 @@ git clone https://github.com/YuKong79A/dotfile-cae.git "$restore_root/repo"
 git -C "$restore_root/repo" status --short --branch
 ```
 
-克隆后先阅读：
+Read the following before continuing:
 
 ```bash
 sed -n '1,260p' "$restore_root/repo/README.md"
 git -C "$restore_root/repo" ls-files
 ```
 
-### 3. 备份已有冲突文件
+### 3. Back up existing conflicting files
 
-创建仅属于本次任务的备份目录，然后对仓库将要写入且目标已经存在的路径做备份。不要备份整个 home，也不要移动不相关文件。
+Create a backup directory dedicated to this restoration, then back up only paths that the repository will write and that already exist on the target. Do not back up the entire home directory or move unrelated files.
 
 ```bash
 backup_root="$HOME/dotfile-restore-backup-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$backup_root"
 ```
 
-Codex 应依据 `git ls-files` 生成冲突清单，保留相对路径、权限和符号链接，并在复制前向用户汇报。恢复验证完成前不要删除该备份。
+Codex must derive a conflict list from `git ls-files`, preserve relative paths, permissions, and symbolic links, and report the list before copying. Do not delete the backup until restoration has been fully validated.
 
-### 4. 只复制仓库跟踪内容
+### 4. Copy only tracked repository content
 
-优先按仓库清单复制，而不是复制临时仓库的 `.git`。可以从临时克隆目录执行：
+Copy from the repository's tracked-file list instead of copying the temporary clone's `.git` directory. From the temporary clone, use:
 
 ```bash
 git -C "$restore_root/repo" ls-files -z | \
@@ -94,7 +98,7 @@ git -C "$restore_root/repo" ls-files -z | \
   tar -C "$HOME" -xpf -
 ```
 
-复制后检查关键文件存在、所有者属于当前用户，并搜索残留的旧 home 绝对路径：
+After copying, confirm that key files exist, verify that they belong to the current user, and search for stale absolute paths from the source home:
 
 ```bash
 stat -c '%U:%G %a %n' \
@@ -105,11 +109,11 @@ rg -n '/home/yukong' \
   "$HOME/.config" "$HOME/.local/bin" "$HOME/.local/share/applications" 2>/dev/null
 ```
 
-如果恢复账号仍为 `yukong`，匹配 `/home/yukong` 不一定是错误；逐项判断。账号不同则只修改确实依赖旧 home 的路径。
+If the restored account is still `yukong`, a `/home/yukong` match is not necessarily an error; inspect each match. If the account differs, modify only paths that genuinely depend on the old home directory.
 
-### 5. 将 home 连接为本仓库工作区
+### 5. Connect the home directory as this repository's worktree
 
-只有复制和检查完成后再建立 Git 元数据。以下 `reset --mixed` 只建立远端索引基线，不应覆盖工作树文件：
+Create Git metadata only after files have been copied and inspected. The following mixed reset establishes the remote index baseline without overwriting worktree files:
 
 ```bash
 git -C "$HOME" init -b main
@@ -119,51 +123,51 @@ git -C "$HOME" reset --mixed origin/main
 git -C "$HOME" branch --set-upstream-to=origin/main main
 ```
 
-为了让位于 home 根目录的仓库忽略所有非仓库文件，在本地的 `$HOME/.git/info/exclude` 末尾加入：
+To prevent the home-root repository from exposing every unrelated untracked file, append this rule to the local `$HOME/.git/info/exclude` file:
 
 ```gitignore
 # Ignore every untracked home path. Existing tracked files remain managed.
 /*
 ```
 
-这是本机规则，不会上传 GitHub。验证 `git status` 只能显示仓库已跟踪配置的真实差异，不能出现整个 home、游戏、密钥或个人资料。新增一个原仓库没有的配置目录时，需要显式执行 `git add -f <path>`。
+This is a machine-local rule and is not uploaded to GitHub. Verify that `git status` reports only genuine differences in tracked configuration and does not expose the entire home directory, games, secrets, or personal data. When adding a configuration path that the repository does not already track, use `git add -f <path>` explicitly.
 
-## 软件和运行时依赖
+## Software and Runtime Dependencies
 
-先检查再安装。仓库脚本至少可能使用：
+Inspect first and install only what is missing. Repository scripts may require at least:
 
-- Caelestia Shell/CLI 与兼容的 Hyprland 环境
-- `fish`、`foot`、`fastfetch`、`starship`、`yazi`
-- `jq`、`python`、`perl`、`bash`、`bsdtar`
-- `wl-clipboard`、`cliphist`
-- `papirus-icon-theme`、Bibata 光标主题、JetBrains Mono Nerd Font
-- 可选：LibreOffice、Fcitx5、Cava、Bat、Codex CLI、`arch-update`
+- Caelestia Shell/CLI and a compatible Hyprland environment
+- `fish`, `foot`, `fastfetch`, `starship`, and `yazi`
+- `jq`, `python`, `perl`, `bash`, and `bsdtar`
+- `wl-clipboard` and `cliphist`
+- `papirus-icon-theme`, a Bibata cursor theme, and JetBrains Mono Nerd Font
+- Optional components: LibreOffice, Fcitx5, Cava, Bat, Codex CLI, and `arch-update`
 
-在 Arch/CachyOS 上应先用 `pacman -Si`、`paru -Si` 或已安装包查询确认正确包名。不要未经检查就安装 README 中推测出的包，也不要假设 AUR 助手必然存在。
+On Arch or CachyOS, query installed packages and use `pacman -Si` or `paru -Si` to confirm package names before installation. Do not install guessed package names from this README without checking them, and do not assume that an AUR helper is available.
 
-Caelestia 的主题同步依赖 `~/.local/state/caelestia/scheme.json`。状态文件通常由 Caelestia 生成，不在本仓库中。先正常启动/生成配色，再运行同步脚本；不要伪造状态文件。
+Caelestia theme synchronization depends on `~/.local/state/caelestia/scheme.json`. This state file is normally generated by Caelestia and is not tracked by the repository. Start Caelestia and generate a color scheme normally before running synchronization scripts; do not fabricate the state file.
 
-`cli.json` 的主题和壁纸 post-hook 当前会调用：
+The current theme and wallpaper post-hooks in `cli.json` invoke:
 
 ```bash
 sudo -n caelestia-greeter --sync
 ```
 
-如果新系统没有安装或授权 Caelestia Greeter，该步骤可能失败。先检查 Greeter、sudoers 和显示管理器的真实状态，不要为了消除错误盲目扩大 sudo 权限。
+This step may fail if Caelestia Greeter is not installed or authorized on the new system. Inspect the actual Greeter, sudoers, and display-manager configuration first. Do not broaden sudo permissions merely to suppress the error.
 
-## 当前桌面行为提示
+## Current Desktop Behavior
 
-- Caelestia 使用 12 小时制，天气位置为 `Tangshan, China`。
-- Foot 是首选终端，使用 Fish；暗色背景透明度为 `0.78`。
-- `user-config.fish` 不应重新添加 `GTK_IM_MODULE=fcitx`；Wayland 下保留 Qt、XMODIFIERS 和 SDL 的 Fcitx 设置。
-- `hypr-user.lua` 启动 `arch-update --tray` 和剪贴板历史脚本。
-- 剪贴板历史可能包含敏感数据，必要时使用 `cliphist wipe`。
-- Hyprland 特殊工作区、窗口规则和快捷键以仓库中的 Lua 文件为准；恢复后必须用实际 Hyprland 版本验证。
-- Papirus、Fastfetch、Starship、Yazi 和 Hyprland scheme 中的颜色可能在重新生成 Caelestia 配色后发生大量正常变化。
+- Caelestia uses a 12-hour clock and the weather location `Tangshan, China`.
+- Foot is the preferred terminal and runs Fish; dark-background opacity is `0.78`.
+- Do not add `GTK_IM_MODULE=fcitx` back to `user-config.fish`. Keep the Qt, XMODIFIERS, and SDL Fcitx settings under Wayland.
+- `hypr-user.lua` starts `arch-update --tray` and the clipboard-history script.
+- Clipboard history may contain sensitive information. Use `cliphist wipe` when necessary.
+- Treat the repository's Lua files as authoritative for Hyprland special workspaces, window rules, and key bindings, then validate them against the installed Hyprland version.
+- Regenerating the Caelestia color scheme may legitimately produce many color changes in Papirus, Fastfetch, Starship, Yazi, and the Hyprland scheme.
 
-## 恢复后验证
+## Post-Restoration Validation
 
-先做静态检查：
+Run static checks first:
 
 ```bash
 jq empty \
@@ -176,39 +180,43 @@ bash -n "$HOME/.config/caelestia/scripts/sync-libreoffice-theme.sh"
 fish -n "$HOME/.config/caelestia/user-config.fish"
 ```
 
-然后在真实图形会话中验证：
+Then validate inside a real graphical session:
 
 ```bash
 hyprctl reload
 hyprctl configerrors
 ```
 
-还应重新打开 Foot、Caelestia、Yazi 和需要的应用，检查字体、图标、透明度、输入法、特殊工作区和主题同步。持久化文件检查不能替代真实登录/重启后的视觉及会话验证。
+Reopen Foot, Caelestia, Yazi, and other relevant applications to check fonts, icons, transparency, input methods, special workspaces, and theme synchronization. Persistent-file checks cannot substitute for visual and session validation after an actual login or restart.
 
-最后检查 Git 范围：
+Finally, inspect the Git scope:
 
 ```bash
 git -C "$HOME" status --short --branch
 git -C "$HOME" check-ignore -v .config/fish/functions/fisher.fish 2>/dev/null || true
 ```
 
-如果验证失败，保留冲突备份，说明失败层级和具体错误；不要通过删除用户现有配置来强行得到干净状态。
+If validation fails, retain the conflict backup and report the exact failure and validation layer. Do not delete existing user configuration merely to force a clean state.
 
-## 后续备份
+## Future Backups
 
-仓库当前使用 HTTPS 远端。此主机可用 `git-credential-libsecret` 将 GitHub Personal Access Token 保存到桌面密钥环。常规更新：
+The repository currently uses an HTTPS remote. This machine can use `git-credential-libsecret` to store a GitHub Personal Access Token in the desktop keyring.
+
+For routine updates, inspect changes first and stage only reviewed paths:
 
 ```bash
 git -C "$HOME" status --short
-git -C "$HOME" add -u
+git -C "$HOME" diff --name-status
+git -C "$HOME" add -- README.md  # Example: stage only a reviewed path.
+git -C "$HOME" diff --cached --name-status
 git -C "$HOME" commit -m "Update desktop configuration"
 git -C "$HOME" push origin main
 ```
 
-对于原仓库不存在、但确认需要纳入备份的新路径：
+Do not use a blanket `git add -u` without first classifying deletions, especially repository-only README or Markdown documentation. For a new path that is absent from the repository but has been explicitly approved for backup, use:
 
 ```bash
 git -C "$HOME" add -f .config/example
 ```
 
-提交前必须检查暂存内容，尤其避免加入令牌、密码、SSH 私钥、浏览器数据、剪贴板数据库、游戏存档和其他隐私文件。
+Before committing, inspect the staged content and ensure it does not include tokens, passwords, SSH private keys, browser data, clipboard databases, game saves, or other private files.

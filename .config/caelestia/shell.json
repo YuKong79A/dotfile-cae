@@ -83,6 +83,14 @@
                 {
                     "enabled": true,
                     "id": "workspaces"
+                },
+                {
+                    "enabled": true,
+                    "id": "spotify"
+                },
+                {
+                    "enabled": false,
+                    "id": "github"
                 }
             ]
         },

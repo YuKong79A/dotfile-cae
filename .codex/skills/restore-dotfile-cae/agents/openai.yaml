@@ -1,0 +1,4 @@
+interface:
+  display_name: "Restore dotfile-cae"
+  short_description: "安全恢复 dotfile-cae，并完成冲突备份与验证"
+  default_prompt: "Use $restore-dotfile-cae to safely restore my desktop configuration from the dotfile-cae repository."

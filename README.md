@@ -23,6 +23,7 @@
 
 仓库当前包含：
 
+- `.codex/skills/restore-dotfile-cae/`：Codex 恢复技能，包含安全流程和“默认只读、确认后执行”的已跟踪文件恢复助手。
 - `.config/caelestia/`：Caelestia CLI、Shell、主题模板、同步脚本、显示器配置和 Hyprland 用户覆盖。
 - `.config/hypr/`：Lua 形式的 Hyprland 配置、窗口规则、快捷键和当前生成的配色。
 - `.config/foot/foot.ini`：默认终端 Foot，Fish shell，JetBrains Mono Nerd Font，暗色背景透明度 `0.78`。
@@ -35,6 +36,10 @@
 - `.face`：用户头像。
 
 仓库当前不包含完整的软件包清单、私钥/令牌、浏览器资料、游戏数据、完整 Fish 插件目录、Kitty 配置、Google Sans Flex 字体安装器以及系统级配置。不得声称这些内容能由本仓库恢复。
+
+## Codex Skill
+
+仓库内置 `.codex/skills/restore-dotfile-cae/`。完整恢复后 Codex 会从默认技能目录发现它；也可以在重装后直接让 Codex 从 `https://github.com/YuKong79A/dotfile-cae/tree/main/.codex/skills/restore-dotfile-cae` 安装技能，再调用 `$restore-dotfile-cae`。技能必须先执行只读预检，列出冲突路径、备份目录、缺失依赖和系统级操作；只有用户确认后才复制文件或执行安装、提权操作。
 
 ## 推荐恢复流程
 

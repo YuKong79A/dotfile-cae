@@ -86,11 +86,11 @@
                 },
                 {
                     "enabled": true,
-                    "id": "spotify"
+                    "id": "github"
                 },
                 {
-                    "enabled": false,
-                    "id": "github"
+                    "enabled": true,
+                    "id": "spotify"
                 }
             ]
         },

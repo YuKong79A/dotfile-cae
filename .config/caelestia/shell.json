@@ -89,7 +89,7 @@
                     "id": "spotify"
                 },
                 {
-                    "enabled": true,
+                    "enabled": false,
                     "id": "github"
                 }
             ]

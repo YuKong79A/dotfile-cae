@@ -22,7 +22,7 @@
         },
         "islands": false,
         "transparency": {
-            "base": 0.8013157894736842,
+            "base": 0.8,
             "enabled": true
         }
     },

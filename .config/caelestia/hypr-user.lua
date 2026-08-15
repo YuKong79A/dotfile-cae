@@ -2,6 +2,10 @@
 
 local vars = require("variables")
 
+-- Chinese locale for the Hyprland session
+hl.env("LANG", "zh_CN.UTF-8")
+hl.env("LC_ALL", "zh_CN.UTF-8")
+
 -- Settings
 hl.config({
     cursor = {

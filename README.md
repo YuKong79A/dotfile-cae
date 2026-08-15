@@ -27,15 +27,15 @@ The repository currently includes:
 - `.config/caelestia/`: Caelestia CLI and Shell configuration, theme templates, synchronization scripts, monitor configuration, and Hyprland user overrides.
 - `.config/hypr/`: Lua-based Hyprland configuration, window rules, key bindings, and the currently generated color scheme.
 - `.config/foot/foot.ini`: Foot as the default terminal, Fish as the shell, JetBrains Mono Nerd Font, and dark-background opacity set to `0.78`.
-- `.config/fish/functions/`: selected wallpaper and Fastfetch helper functions; this is not a complete Fish configuration backup.
+- `.config/fish/`: the active Fish startup configuration, Fish greeting, fzf.fish plugin files and bindings, `clean-cache`, package-update aliases, and wallpaper/Fastfetch helper functions.
 - `.config/fastfetch/`, `.config/starship.toml`, and `.config/yazi/`: configuration and themes integrated with Caelestia.
 - `.config/xdg-terminals.list`: XDG terminal preference order.
-- `.local/bin/`: personal wallpaper, terminal, and transparency helper scripts.
+- `.local/bin/`: personal wallpaper, terminal, and transparency helper scripts, plus the `pac`, `pacr`, and `pacrrr` interactive package-management tools.
 - `.local/share/applications/foot-caelestia.desktop`: the Caelestia-aware Foot desktop entry.
 - `.local/share/icons/Papirus-caelestia-dark/`: the Papirus icon theme generated from the current Caelestia color scheme.
 - `.face`: the user's profile image.
 
-The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, the complete Fish plugin directory, Kitty configuration, the Google Sans Flex installer, or system-level configuration. Do not claim that these items can be restored from this repository.
+The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, unrelated Fish plugins, Kitty configuration, the Google Sans Flex installer, or system-level configuration. Do not claim that these items can be restored from this repository.
 
 ## Codex Skill
 
@@ -138,7 +138,10 @@ Inspect first and install only what is missing. Repository scripts may require a
 
 - Caelestia Shell/CLI and a compatible Hyprland environment
 - `fish`, `foot`, `fastfetch`, `starship`, and `yazi`
+- `fzf` for Fish fuzzy search and the interactive package scripts
 - `jq`, `python`, `perl`, `bash`, and `bsdtar`
+- `curl`, `gzip`, `git`, and an AUR helper such as `paru` or `yay` for `pac`
+- `strace` for `pacrrr`; Flatpak integration is used by `pacr` when `flatpak` is installed
 - `wl-clipboard` and `cliphist`
 - `papirus-icon-theme`, a Bibata cursor theme, and JetBrains Mono Nerd Font
 - Optional components: LibreOffice, Fcitx5, Cava, Bat, Codex CLI, and `arch-update`
@@ -159,6 +162,9 @@ This step may fail if Caelestia Greeter is not installed or authorized on the ne
 
 - Caelestia uses a 12-hour clock and the weather location `Tangshan, China`.
 - Foot is the preferred terminal and runs Fish; dark-background opacity is `0.78`.
+- Fish starts Fastfetch without the extra Caelestia ASCII banner. `fa` runs Fastfetch, `clean` runs the interactive cache cleaner, and `up`/`update` selects Paru, Yay, Shelly, or Pacman for a full system update.
+- fzf.fish provides `Ctrl+Alt+F` for files/directories, `Ctrl+Alt+L` for Git log, `Ctrl+Alt+S` for Git status, and `Ctrl+R` for command history.
+- `pac` searches and installs repository/AUR packages, `pacr` interactively removes native or Flatpak packages, and `pacrrr` traces an application with `strace` before offering residual files for removal. Review every selection before confirming removal.
 - Do not add `GTK_IM_MODULE=fcitx` back to `user-config.fish`. Keep the Qt, XMODIFIERS, and SDL Fcitx settings under Wayland.
 - `hypr-user.lua` starts `arch-update --tray` and the clipboard-history script.
 - Clipboard history may contain sensitive information. Use `cliphist wipe` when necessary.
@@ -178,6 +184,13 @@ bash -n "$HOME/.config/caelestia/scripts/copy.sh"
 bash -n "$HOME/.config/caelestia/posthooks/cursor.sh"
 bash -n "$HOME/.config/caelestia/scripts/sync-libreoffice-theme.sh"
 fish -n "$HOME/.config/caelestia/user-config.fish"
+fish -n "$HOME/.config/fish/config.fish" \
+  "$HOME/.config/fish/conf.d/fzf.fish" \
+  "$HOME/.config/fish/functions/fish_greeting.fish"
+bash -n "$HOME/.config/fish/clean-cache" \
+  "$HOME/.local/bin/pac" \
+  "$HOME/.local/bin/pacr" \
+  "$HOME/.local/bin/pacrrr"
 ```
 
 Then validate inside a real graphical session:
@@ -187,7 +200,7 @@ hyprctl reload
 hyprctl configerrors
 ```
 
-Reopen Foot, Caelestia, Yazi, and other relevant applications to check fonts, icons, transparency, input methods, special workspaces, and theme synchronization. Persistent-file checks cannot substitute for visual and session validation after an actual login or restart.
+Reopen Foot, Caelestia, Yazi, and other relevant applications to check fonts, icons, transparency, input methods, special workspaces, and theme synchronization. In Fish, verify `type fa clean up pac pacr pacrrr` and inspect the fzf bindings with `bind ctrl-alt-f`, `bind ctrl-alt-l`, `bind ctrl-alt-s`, and `bind ctrl-r`. Persistent-file checks cannot substitute for visual and session validation after an actual login or restart.
 
 Finally, inspect the Git scope:
 

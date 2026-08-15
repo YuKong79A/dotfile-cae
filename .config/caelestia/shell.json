@@ -85,7 +85,7 @@
                     "id": "workspaces"
                 },
                 {
-                    "enabled": true,
+                    "enabled": false,
                     "id": "github"
                 },
                 {

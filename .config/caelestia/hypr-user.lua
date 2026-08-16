@@ -7,7 +7,6 @@ hl.env("LANG", "zh_CN.UTF-8")
 hl.env("LC_ALL", "zh_CN.UTF-8")
 
 -- Fcitx5 input method
-hl.env("GTK_IM_MODULE", "fcitx")
 hl.env("QT_IM_MODULE", "fcitx")
 hl.env("XMODIFIERS", "@im=fcitx")
 hl.env("SDL_IM_MODULE", "fcitx")

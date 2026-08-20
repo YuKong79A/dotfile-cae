@@ -80,7 +80,7 @@
         "move": true
       },
       "spotify": {
-        "enable": false
+        "enable": true
       }
     },
     "on_together": {

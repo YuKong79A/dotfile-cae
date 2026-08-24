@@ -163,10 +163,10 @@ Both the Caelestia theme and wallpaper post-hooks rerun this script. The generat
 The current theme and wallpaper post-hooks in `cli.json` invoke:
 
 ```bash
-sudo -n caelestia-greeter --sync
+sudo -n astra-airlock --sync
 ```
 
-This step may fail if Caelestia Greeter is not installed or authorized on the new system. Inspect the actual Greeter, sudoers, and display-manager configuration first. Do not broaden sudo permissions merely to suppress the error.
+This step may fail if Airlock is not installed or its narrowly scoped sync command is not authorized on the new system. Inspect Airlock, sudoers, greetd, and the active display-manager configuration first. Do not broaden sudo permissions merely to suppress the error.
 
 ## Current Desktop Behavior
 

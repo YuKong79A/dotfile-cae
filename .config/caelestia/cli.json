@@ -3,10 +3,10 @@
     "iconTheme": "Papirus-caelestia-dark",
     "iconThemeDark": "Papirus-caelestia-dark",
     "iconThemeLight": "Papirus-Light",
-    "postHook": "bash ~/.config/caelestia/posthooks/cursor.sh && bash ~/.config/caelestia/scripts/sync-fcitx5-theme.sh && bash ~/.config/caelestia/scripts/sync-papirus-icons.sh && bash ~/.config/caelestia/scripts/sync-fastfetch-theme.sh && bash ~/.config/caelestia/scripts/sync-starship-theme.sh && bash ~/.config/caelestia/scripts/sync-cava-theme.sh && bash ~/.config/caelestia/scripts/sync-bat-theme.sh && bash ~/.config/caelestia/scripts/sync-yazi-theme.sh && bash ~/.config/caelestia/scripts/sync-libreoffice-theme.sh && bash ~/.config/caelestia/scripts/sync-codex-theme.sh && bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && sudo -n caelestia-greeter --sync"
+    "postHook": "bash ~/.config/caelestia/posthooks/cursor.sh && bash ~/.config/caelestia/scripts/sync-fcitx5-theme.sh && bash ~/.config/caelestia/scripts/sync-papirus-icons.sh && bash ~/.config/caelestia/scripts/sync-fastfetch-theme.sh && bash ~/.config/caelestia/scripts/sync-starship-theme.sh && bash ~/.config/caelestia/scripts/sync-cava-theme.sh && bash ~/.config/caelestia/scripts/sync-bat-theme.sh && bash ~/.config/caelestia/scripts/sync-yazi-theme.sh && bash ~/.config/caelestia/scripts/sync-libreoffice-theme.sh && bash ~/.config/caelestia/scripts/sync-codex-theme.sh && bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && sudo -n astra-airlock --sync"
   },
   "wallpaper": {
-    "postHook": "bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && sudo -n caelestia-greeter --sync"
+    "postHook": "bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && sudo -n astra-airlock --sync"
   },
   "toggles": {
     "communication": {

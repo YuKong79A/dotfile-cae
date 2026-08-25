@@ -3,6 +3,7 @@ return {
     terminal                   = "foot",
     browser                    = "helium-browser",
     fileExplorer               = "thunar",
+    audioSettings              = "pwvucontrol",
 
     -- Blur
     blurEnabled                = true,

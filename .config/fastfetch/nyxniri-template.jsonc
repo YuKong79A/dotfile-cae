@@ -13,6 +13,9 @@
         }
     },
     "display": {
+        "key": {
+            "paddingLeft": 5
+        },
         "separator": " ",
         "color": "__TEXT__",
         "constants": [
@@ -40,47 +43,62 @@
             "format": "{host-name}"
         },
         {
-            "key": "│ {$3}󰅐 uptime  {#keys}│",
-            "type": "uptime"
-        },
-        {
-            "key": "│ {$4}{icon} distro  {#keys}│",
+            "key": "│ {$3}{icon} distro  {#keys}│",
             "type": "os"
         },
         {
-            "key": "│ {$5} kernel  {#keys}│",
+            "key": "│ {$4} kernel  {#keys}│",
             "type": "kernel"
         },
         {
-            "key": "│ {$6}󰇄 desktop {#keys}│",
+            "key": "│ {$5} OS Age  {#keys}│",
+            "type": "disk",
+            "folders": "/",
+            "format": "{days} days"
+        },
+        {
+            "key": "│ {$6}󰅐 uptime  {#keys}│",
+            "type": "uptime"
+        },
+        {
+            "key": "│ {$1}󰏖 apps    {#keys}│",
+            "type": "packages",
+            "format": "{all}"
+        },
+        {
+            "key": "│ {$2}󰇄 desktop {#keys}│",
             "type": "de"
         },
         {
-            "key": "│ {$1} term    {#keys}│",
+            "key": "│ {$3} term    {#keys}│",
             "type": "terminal"
         },
         {
-            "key": "│ {$2} shell   {#keys}│",
+            "key": "│ {$4} shell   {#keys}│",
             "type": "shell"
         },
         {
-            "key": "│ {$3}󰍛 cpu     {#keys}│",
+            "key": "│ {$5} font    {#keys}│",
+            "type": "terminalfont"
+        },
+        {
+            "key": "│ {$6}󰍛 cpu     {#keys}│",
             "type": "cpu",
             "showPeCoreCount": true
         },
         {
-            "key": "│ {$4}󰉉 disk    {#keys}│",
+            "key": "│ {$1} memory  {#keys}│",
+            "type": "memory"
+        },
+        {
+            "key": "│ {$2}󰉉 disk    {#keys}│",
             "type": "disk",
             "folders": "/"
         },
         {
-            "key": "│ {$5} memory  {#keys}│",
-            "type": "memory"
-        },
-        {
-            "key": "│ {$6}󰩟 network {#keys}│",
-            "type": "localip",
-            "format": "{ipv4} ({ifname})"
+            "key": "│ {$3}󰝚 playing {#keys}│",
+            "type": "media",
+            "format": "{?artist}{artist} - {?}{title}"
         },
         {
             "key": "├───────────┤",

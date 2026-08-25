@@ -26,10 +26,16 @@ function f
     # 超过此数量将按照时间顺序删除最旧的文件
     set -l MAX_USED_LIMIT 50
 
-    # 默认图片区域大小，单位是终端字符列/行。命令行传入 --logo-width/--logo-height 可覆盖。
-    set -l LOGO_WIDTH 28
-    set -l LOGO_HEIGHT 18
-    set -l LOGO_PADDING_RIGHT 9
+    # 默认图片区域大小，单位是终端字符列/行。
+    # 顶部留白 1 行、右侧留白 2 列，使图片和信息框保持参考图中的相对位置。
+    # 命令行传入 --logo-width/--logo-height 可覆盖。
+    set -l LOGO_WIDTH 25
+    set -l LOGO_HEIGHT 15
+    set -l LOGO_PADDING_TOP 1
+    set -l LOGO_PADDING_RIGHT 2
+
+    # Fastfetch 输出结束后，与下一条 Starship 提示符之间保留的空行数。
+    set -l PROMPT_SPACING_LINES 1
 
     # ===========================================
 
@@ -275,7 +281,7 @@ function f
     # 运行 Fastfetch
     if test -n "$SELECTED_IMG"; and test -f "$SELECTED_IMG"
         # 显示图片
-        fastfetch --logo-type sixel --logo "$SELECTED_IMG" --logo-width "$LOGO_WIDTH" --logo-height "$LOGO_HEIGHT" --logo-padding-right "$LOGO_PADDING_RIGHT" --logo-preserve-aspect-ratio true $ARGS_FOR_FASTFETCH
+        fastfetch --logo-type sixel --logo "$SELECTED_IMG" --logo-width "$LOGO_WIDTH" --logo-height "$LOGO_HEIGHT" --logo-padding-top "$LOGO_PADDING_TOP" --logo-padding-right "$LOGO_PADDING_RIGHT" --logo-preserve-aspect-ratio true $ARGS_FOR_FASTFETCH
 
         # === 逻辑: 移动到 used 目录 ===
         mv "$SELECTED_IMG" "$USED_DIR/"
@@ -305,6 +311,13 @@ function f
         if test "$CLEAN_CACHE_MODE" = true
             # 仅删除缩略图缓存，保留原图
             rm -rf "$HOME/.cache/fastfetch/images"
+        end
+
+        # 避免下一条 Starship 提示符紧贴图片和系统信息。
+        if test "$PROMPT_SPACING_LINES" -gt 0
+            for spacing_index in (seq "$PROMPT_SPACING_LINES")
+                echo
+            end
         end
     else
         # 失败提示语

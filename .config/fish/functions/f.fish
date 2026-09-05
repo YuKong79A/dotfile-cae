@@ -26,6 +26,15 @@ function f
     # 超过此数量将按照时间顺序删除最旧的文件
     set -l MAX_USED_LIMIT 50
 
+    # 图片协议自动适配当前终端。使用普通 Kitty 协议以兼容 JPG，并避免
+    # kitty-direct 在图片随后移入 used 目录时发生路径读取竞态。
+    set -l LOGO_TYPE auto
+    if set -q KITTY_WINDOW_ID; or string match -q 'xterm-kitty*' -- "$TERM"
+        set LOGO_TYPE kitty
+    else if string match -q 'foot*' -- "$TERM"
+        set LOGO_TYPE sixel
+    end
+
     # 默认图片区域大小，单位是终端字符列/行。
     # 顶部留白 1 行、右侧留白 2 列，使图片和信息框保持参考图中的相对位置。
     # 命令行传入 --logo-width/--logo-height 可覆盖。
@@ -281,7 +290,7 @@ function f
     # 运行 Fastfetch
     if test -n "$SELECTED_IMG"; and test -f "$SELECTED_IMG"
         # 显示图片
-        fastfetch --logo-type sixel --logo "$SELECTED_IMG" --logo-width "$LOGO_WIDTH" --logo-height "$LOGO_HEIGHT" --logo-padding-top "$LOGO_PADDING_TOP" --logo-padding-right "$LOGO_PADDING_RIGHT" --logo-preserve-aspect-ratio true $ARGS_FOR_FASTFETCH
+        fastfetch --logo-type "$LOGO_TYPE" --logo "$SELECTED_IMG" --logo-width "$LOGO_WIDTH" --logo-height "$LOGO_HEIGHT" --logo-padding-top "$LOGO_PADDING_TOP" --logo-padding-right "$LOGO_PADDING_RIGHT" --logo-preserve-aspect-ratio true $ARGS_FOR_FASTFETCH
 
         # === 逻辑: 移动到 used 目录 ===
         mv "$SELECTED_IMG" "$USED_DIR/"

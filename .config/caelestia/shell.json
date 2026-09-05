@@ -184,7 +184,7 @@
         "profilePicShape": 12
     },
     "services": {
-        "pipPaused": false,
+        "pipPaused": true,
         "useTwelveHourClock": true,
         "weatherLocation": "Tangshan, China"
     },

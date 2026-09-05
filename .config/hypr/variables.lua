@@ -6,11 +6,11 @@ return {
     ------------------
 
     -- Apps
-    terminal                   = "foot",
-    browser                    = "firefox",
+    terminal                   = "kitty",
+    browser                    = "zen-browser",
     editor                     = "codium",
     fileExplorer               = "thunar",
-    audioSettings              = "pavucontrol",
+    audioSettings              = "pwvucontrol",
 
     -- Touchpad
     touchpadDisableTyping      = true,

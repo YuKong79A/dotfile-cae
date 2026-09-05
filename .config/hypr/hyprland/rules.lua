@@ -85,6 +85,7 @@ tagged_rule(float_tag, {
 tagged_rule(float_tag, {
     "File (Operation|Upload)( Progress)?", -- File manager operation progress (upload, move, copy, etc)
     ".* Properties",                       -- File properties
+    'Rename ".*"',                         -- File renaming
 }, "title")
 
 
@@ -143,8 +144,7 @@ tagged_rule(music_player_tag, {
 }, "initial_title")
 tagged_rule(communication_app_tag, {
     "discord|equibop|vesktop", -- Discord clients
-    "whatsapp",                -- Whatsapp
-    "wechat"                   -- WeChat Universal
+    "whatsapp"                 -- Whatsapp
 }, "class")
 tagged_rule(todo_app_tag, {
     "todoist" -- Todoist

@@ -34,6 +34,7 @@ if status is-interactive
     command -v eza &>/dev/null && alias ls='eza --icons --group-directories-first -1'
     command -v bat &>/dev/null && alias cat='bat'
     command -v fastfetch &>/dev/null && alias ff=fastfetch
+    command -v fastfetch &>/dev/null && alias fa=fastfetch
     command -v nvim &>/dev/null && alias vim='nvim'
 
     # Abbrs

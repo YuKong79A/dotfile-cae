@@ -1,7 +1,8 @@
 return {
+    cursorSize = 24,
     -- Apps
-    terminal                   = kitty,
-    browser                    = "zen-browser",
+    terminal                   = "foot",
+    browser                    = "firefox",
     fileExplorer               = "thunar",
     audioSettings              = "pwvucontrol",
 
@@ -15,7 +16,7 @@ return {
     windowOpacity              = 0.8,
 
     -- Misc
-    cursorTheme                = "Bibata-Modern-Classic",
+    cursorTheme                = "Bibata-Caelestia",
 
     -- Apps (Keybinds)
     kbBrowser                  = "SUPER + B",

@@ -5,7 +5,7 @@
 	<key>author</key>
 	<string>Caelestia</string>
 	<key>comment</key>
-	<string>Caelestia tmTheme template using Material 3 palette variables.</string>
+	<string>Caelestia CLI user template for Codex syntax highlighting.</string>
 	<key>name</key>
 	<string>Caelestia</string>
 	<key>settings</key>
@@ -14,52 +14,52 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.surface.default.hex}}</string>
+				<string>#{{ surface.hex }}</string>
 				<key>foreground</key>
-				<string>{{colors.on_surface.default.hex}}</string>
+				<string>#{{ onSurface.hex }}</string>
 
 				<key>caret</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 
 				<key>invisibles</key>
-				<string>{{colors.outline.default.hex}}</string>
+				<string>#{{ outline.hex }}</string>
 				<key>guide</key>
-				<string>{{colors.outline_variant.default.hex}}</string>
+				<string>#{{ outlineVariant.hex }}</string>
 
 				<key>lineHighlight</key>
-				<string>{{colors.surface_container_high.default.hex}}</string>
+				<string>#{{ surfaceContainerHigh.hex }}</string>
 				<key>rangeHighlight</key>
-				<string>{{colors.tertiary.default.hex | set_alpha 0.28}}</string>
+				<string>#{{ tertiary.hex }}47</string>
 
 				<key>hoverHighlight</key>
-				<string>{{colors.primary.default.hex | set_alpha 0.24}}</string>
+				<string>#{{ primary.hex }}3d</string>
 
 				<key>referenceHighlight</key>
-				<string>{{colors.secondary.default.hex | set_alpha 0.3}}</string>
+				<string>#{{ secondary.hex }}4c</string>
 
 				<key>selection</key>
-				<string>{{colors.primary.default.hex | set_alpha 0.32}}</string>
+				<string>#{{ primary.hex }}52</string>
 				<key>inactiveSelection</key>
-				<string>{{colors.surface_variant.default.hex | set_alpha 0.32}}</string>
+				<string>#{{ surfaceVariant.hex }}52</string>
 				<key>selectionHighlight</key>
-				<string>{{colors.primary.default.hex | set_alpha 0.18}}</string>
+				<string>#{{ primary.hex }}2e</string>
 
 				<key>findRangeHighlight</key>
-				<string>{{colors.outline.default.hex | set_alpha 0.32}}</string>
+				<string>#{{ outline.hex }}52</string>
 				<key>findMatchHighlight</key>
-				<string>{{colors.tertiary.default.hex | set_alpha 0.38}}</string>
+				<string>#{{ tertiary.hex }}61</string>
 				<key>currentFindMatchHighlight</key>
-				<string>{{colors.secondary.default.hex | set_alpha 0.38}}</string>
+				<string>#{{ secondary.hex }}61</string>
 
 				<key>wordHighlight</key>
-				<string>{{colors.on_surface_variant.default.hex | set_alpha 0.2}}</string>
+				<string>#{{ onSurfaceVariant.hex }}33</string>
 				<key>wordHighlightStrong</key>
-				<string>{{colors.primary.default.hex | set_alpha 0.24}}</string>
+				<string>#{{ primary.hex }}3d</string>
 
 				<key>activeLinkForeground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 				<key>gotoDefinitionLinkForeground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -72,7 +72,7 @@
 				<key>fontStyle</key>
 				<string>italic</string>
 				<key>foreground</key>
-				<string>{{colors.outline.default.hex}}</string>
+				<string>#{{ outline.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -85,7 +85,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>{{colors.outline.default.hex}}</string>
+				<string>#{{ outline.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -96,7 +96,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -107,7 +107,7 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.error.default.hex | set_alpha 0.08}}</string>
+				<string>#{{ error.hex }}14</string>
 			</dict>
 		</dict>
 		<dict>
@@ -118,9 +118,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.error.default.hex | set_alpha 0.08}}</string>
+				<string>#{{ error.hex }}14</string>
 				<key>foreground</key>
-				<string>{{colors.error.default.hex}}</string>
+				<string>#{{ error.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -131,7 +131,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.on_surface.default.hex}}</string>
+				<string>#{{ onSurface.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -142,7 +142,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -153,7 +153,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -164,7 +164,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.tertiary.default.hex}}</string>
+				<string>#{{ tertiary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -175,7 +175,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.error.default.hex}}</string>
+				<string>#{{ error.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -188,7 +188,7 @@
 				<key>fontStyle</key>
 				<string>bold</string>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -201,7 +201,7 @@
 				<key>fontStyle</key>
 				<string>bold</string>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -212,7 +212,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.error.default.hex}}</string>
+				<string>#{{ error.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -234,7 +234,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.tertiary.default.hex}}</string>
+				<string>#{{ tertiary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -245,7 +245,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -256,7 +256,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.tertiary.default.hex}}</string>
+				<string>#{{ tertiary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -267,7 +267,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -278,7 +278,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -289,7 +289,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.on_surface_variant.default.hex}}</string>
+				<string>#{{ onSurfaceVariant.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -300,7 +300,7 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.surface_container_low.default.hex}}</string>
+				<string>#{{ surfaceContainerLow.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -317,7 +317,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.outline.default.hex}}</string>
+				<string>#{{ outline.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -328,7 +328,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.on_surface_variant.default.hex}}</string>
+				<string>#{{ onSurfaceVariant.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -339,7 +339,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -352,7 +352,7 @@
 				<key>fontStyle</key>
 				<string>italic</string>
 				<key>foreground</key>
-				<string>{{colors.tertiary.default.hex}}</string>
+				<string>#{{ tertiary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -363,7 +363,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -380,7 +380,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -391,7 +391,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.tertiary.default.hex}}</string>
+				<string>#{{ tertiary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -402,7 +402,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -430,9 +430,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.tertiary_container.default.hex}}</string>
+				<string>#{{ tertiaryContainer.hex }}</string>
 				<key>foreground</key>
-				<string>{{colors.on_tertiary_container.default.hex}}</string>
+				<string>#{{ onTertiaryContainer.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -443,9 +443,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.error_container.default.hex}}</string>
+				<string>#{{ errorContainer.hex }}</string>
 				<key>foreground</key>
-				<string>{{colors.on_error_container.default.hex}}</string>
+				<string>#{{ onErrorContainer.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -467,9 +467,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.error.default.hex | set_alpha 0.08}}</string>
+				<string>#{{ error.hex }}14</string>
 				<key>foreground</key>
-				<string>{{colors.error.default.hex}}</string>
+				<string>#{{ error.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -480,9 +480,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.secondary_container.default.hex}}</string>
+				<string>#{{ secondaryContainer.hex }}</string>
 				<key>foreground</key>
-				<string>{{colors.on_secondary_container.default.hex}}</string>
+				<string>#{{ onSecondaryContainer.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -493,7 +493,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -504,7 +504,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.on_surface_variant.default.hex}}</string>
+				<string>#{{ onSurfaceVariant.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -515,7 +515,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.on_surface_variant.default.hex}}</string>
+				<string>#{{ onSurfaceVariant.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -526,7 +526,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -548,7 +548,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.error.default.hex}}</string>
+				<string>#{{ error.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -570,7 +570,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -581,7 +581,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.primary.default.hex}}</string>
+				<string>#{{ primary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -592,7 +592,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>{{colors.secondary.default.hex}}</string>
+				<string>#{{ secondary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -605,7 +605,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>{{colors.tertiary.default.hex}}</string>
+				<string>#{{ tertiary.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -622,9 +622,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.surface_variant.default.hex}}</string>
+				<string>#{{ surfaceVariant.hex }}</string>
 				<key>foreground</key>
-				<string>{{colors.on_surface_variant.default.hex}}</string>
+				<string>#{{ onSurfaceVariant.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -635,9 +635,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.error_container.default.hex}}</string>
+				<string>#{{ errorContainer.hex }}</string>
 				<key>foreground</key>
-				<string>{{colors.on_error_container.default.hex}}</string>
+				<string>#{{ onErrorContainer.hex }}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -648,9 +648,9 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>{{colors.secondary_container.default.hex}}</string>
+				<string>#{{ secondaryContainer.hex }}</string>
 				<key>foreground</key>
-				<string>{{colors.on_secondary_container.default.hex}}</string>
+				<string>#{{ onSecondaryContainer.hex }}</string>
 			</dict>
 		</dict>
 	</array>

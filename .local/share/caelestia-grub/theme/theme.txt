@@ -1,0 +1,35 @@
+# GRUB2 Theme - Caelestia Nexus
+title-text: ""
+desktop-image: "background.png"
+terminal-font: "Roboto Mono Regular 22"
+terminal-left: "20%"
+terminal-top: "20%"
+terminal-width: "60%"
+terminal-height: "60%"
+terminal-border: "0"
+
++ boot_menu {
+  left = 21%
+  top = 21%
+  width = 58%
+  height = 48%
+  item_font = "Google Sans Flex Regular 22"
+  item_color = "#847269"
+  selected_item_color = "#f8e1d7"
+  item_height = 48
+  item_padding = 4
+  item_spacing = 16
+  menu_pixmap_style = ""
+  item_pixmap_style = "item_*.png"
+  selected_item_pixmap_style = "select_*.png"
+}
+
++ progress_bar {
+  id = "__timeout__"
+  left = 21%
+  top = 70%
+  width = 58%
+  height = 12
+  bar_style = "timeout_bg_*.png"
+  highlight_style = "timeout_hl_*.png"
+}

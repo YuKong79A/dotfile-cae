@@ -103,7 +103,6 @@ hl.bind("SUPER + SHIFT + F12", hl.dsp.exec_cmd("/home/yukong/.local/bin/random-y
 hl.on("hyprland.start", function()
     hl.exec_cmd("fcitx5 -d")
     hl.exec_cmd("flclash")
-    hl.exec_cmd("/home/yukong/.config/caelestia/scripts/copy.sh")
 end)
 
 -- Dynamic cursor plugin

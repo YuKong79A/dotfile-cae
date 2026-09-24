@@ -1,99 +1,65 @@
-// NyxNiri fastfetch layout, adapted to follow the Caelestia palette.
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-    "logo": {
-        "type": "small",
-        "color": {
-            "1": "#c6c6c6",
-            "2": "#9d9d9d",
-            "3": "#f7f7f7"
-        },
-        "padding": {
-            "top": 1
-        }
-    },
+    "logo": null,
     "display": {
-        "separator": " ",
-        "color": "#e5e5e5",
-        "constants": [
-            "\u001b[38;2;198;198;198m",
-            "\u001b[38;2;157;157;157m",
-            "\u001b[38;2;247;247;247m",
-            "\u001b[38;2;212;212;212m",
-            "\u001b[38;2;212;212;212m",
-            "\u001b[38;2;216;218;221m"
-        ]
+        "separator": "  ",
+        "color": "white",
+        "constants": ["\u001b[37m", "\u001b[38;5;16m", "\u001b[38;5;17m", "\u001b[38;5;18m"]
     },
     "modules": [
+        "break",
         {
-            "key": "╭───────────╮",
-            "type": "custom"
+            "type": "custom",
+            "key": "╭───────────────────────────────────╮"
         },
         {
-            "key": "│ {$1} user    {#keys}│",
-            "type": "title",
-            "format": "{user-name}"
+            "type": "kernel",
+            "key": "│ {$2}{$1}  kernel",
+            "format": "{$2}{release>22}{$1} │"
         },
         {
-            "key": "│ {$2}󰇅 hname   {#keys}│",
-            "type": "title",
-            "format": "{host-name}"
+            "type": "command",
+            "key": "│   uptime",
+            "text": "uptime -p | cut -d ' ' -f 2-",
+            "format": "{>22} │"
         },
         {
-            "key": "│ {$3}󰅐 uptime  {#keys}│",
-            "type": "uptime"
+            "type": "shell",
+            "key": "│ {$2}{$1}  shell ",
+            "format": "{$2}{pretty-name>22}{$1} │"
         },
         {
-            "key": "│ {$4}{icon} distro  {#keys}│",
-            "type": "os"
+            "type": "command",
+            "key": "│ {$3}{$1}  mem   ",
+            "text": "free -m | awk 'NR==2{printf \"%.2f GiB / %.2f GiB\",$3/1024,$2/1024}'",
+            "format": "{$3}{>22}{$1} │"
         },
         {
-            "key": "│ {$5} kernel  {#keys}│",
-            "type": "kernel"
+            "type": "packages",
+            "key": "│   pkgs  ",
+            "format": "{all>22} │"
         },
         {
-            "key": "│ {$6}󰇄 desktop {#keys}│",
-            "type": "de"
+            "type": "command",
+            "key": "│ {$2}{$1}  user  ",
+            "text": "echo $USER",
+            "format": "{$2}{>22}{$1} │"
         },
         {
-            "key": "│ {$1} term    {#keys}│",
-            "type": "terminal"
+            "type": "command",
+            "key": "│   hname ",
+            "text": "hostnamectl hostname",
+            "format": "{>22} │"
         },
         {
-            "key": "│ {$2} shell   {#keys}│",
-            "type": "shell"
+            "type": "os",
+            "key": "│ {$4}󰻀{$1}  distro",
+            "format": "{$4}{pretty-name>22}{$1} │"
         },
         {
-            "key": "│ {$3}󰍛 cpu     {#keys}│",
-            "type": "cpu",
-            "showPeCoreCount": true
+            "type": "custom",
+            "key": "╰───────────────────────────────────╯"
         },
-        {
-            "key": "│ {$4}󰉉 disk    {#keys}│",
-            "type": "disk",
-            "folders": "/"
-        },
-        {
-            "key": "│ {$5} memory  {#keys}│",
-            "type": "memory"
-        },
-        {
-            "key": "│ {$6}󰩟 network {#keys}│",
-            "type": "localip",
-            "format": "{ipv4} ({ifname})"
-        },
-        {
-            "key": "├───────────┤",
-            "type": "custom"
-        },
-        {
-            "key": "│ {$3} colors  {#keys}│",
-            "type": "colors",
-            "symbol": "circle"
-        },
-        {
-            "key": "╰───────────╯",
-            "type": "custom"
-        }
+        "break"
     ]
 }

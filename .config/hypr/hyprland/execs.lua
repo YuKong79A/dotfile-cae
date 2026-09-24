@@ -4,7 +4,7 @@ local fn   = require("utils.functions")
 hl.on("hyprland.start", function()
     -- Keyring and auth
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
-    hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+    -- Midnight Shell provides the polkit agent.
 
     -- Clipboard history
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
@@ -19,8 +19,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size " .. vars.cursorSize)
 
     -- Location provider and night light
-    hl.exec_cmd("/usr/lib/geoclue-2.0/demos/agent")
-    hl.exec_cmd("sleep 1 && gammastep")
+    -- geoclue agent is not installed on this machine.
+    -- gammastep is not installed on this machine.
 
     -- Forward bluetooth media commands to MPRIS
     hl.exec_cmd("mpris-proxy")

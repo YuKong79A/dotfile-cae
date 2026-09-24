@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$HOME/.local/share/caelestia-grub/src"
+python3 generate.py
+sudo -n /usr/local/sbin/caelestia-grub-deploy

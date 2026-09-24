@@ -85,7 +85,7 @@
                     "id": "workspaces"
                 },
                 {
-                    "enabled": false,
+                    "enabled": true,
                     "id": "github"
                 },
                 {
@@ -101,8 +101,6 @@
             "activeWindow": true,
             "tray": true
         },
-        "position": "left",
-        "showOnHover": true,
         "spotify": {
             "autoHide": true,
             "background": true,
@@ -123,22 +121,30 @@
             "showWindowsOnSpecialWorkspaces": true,
             "specialWorkspaceIcons": [
                 {
+                    "flags": "",
                     "icon": "sports_esports",
-                    "name": "steam"
+                    "name": "steam",
+                    "regex": ""
                 },
                 {
+                    "flags": "",
                     "icon": "calendar_today",
-                    "name": "google"
+                    "name": "google",
+                    "regex": ""
                 },
                 {
+                    "flags": "",
                     "icon": "diversity_2",
-                    "name": "on_together"
+                    "name": "on_together",
+                    "regex": ""
                 }
             ],
             "useIcon": true,
             "windowIcons": [
                 {
+                    "flags": "",
                     "icon": "sports_esports",
+                    "name": "",
                     "regex": "steam(_app_(default|[0-9]+))?"
                 }
             ]
@@ -164,11 +170,19 @@
             "lockBeforeSleep": true,
             "timeouts": [
                 {
+                    "enabled": true,
                     "idleAction": "lock",
+                    "inhibitWhenAudio": false,
+                    "inhibitWhenCharging": false,
+                    "respectInhibitors": true,
                     "timeout": 180
                 },
                 {
+                    "enabled": true,
                     "idleAction": "dpms off",
+                    "inhibitWhenAudio": false,
+                    "inhibitWhenCharging": false,
+                    "respectInhibitors": true,
                     "returnAction": "dpms on",
                     "timeout": 300
                 }
@@ -184,6 +198,7 @@
         "profilePicShape": 12
     },
     "services": {
+        "clockFormat": "TwentyFourHour",
         "pipPaused": true,
         "useTwelveHourClock": true,
         "weatherLocation": "Tangshan, China"

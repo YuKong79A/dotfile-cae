@@ -49,10 +49,10 @@ Item {
 
             Repeater {
                 model: [
-                    { text: "Artix Linux", icon: "artix.png", selected: true },
-                    { text: "Advanced options for Artix Linux", icon: "gnu-linux.png", selected: false },
-                    { text: "Windows 11", icon: "windows11.png", selected: false },
-                    { text: "UEFI Firmware Settings", icon: "efi.png", selected: false }
+                    { text: "Arch Linux", selected: true },
+                    { text: "Arch Linux 的高级选项", selected: false },
+                    { text: "UEFI Firmware Settings", selected: false },
+                    { text: "Arch Linux snapshots", selected: false }
                 ]
 
                 Rectangle {
@@ -61,26 +61,14 @@ Item {
                     radius: 12
                     color: Qt.alpha(modelData.selected ? (Config.scheme.surfaceContainerHighest || "#1d2827") : (Config.scheme.surfaceContainerHigh || "#192120"), Config.layersTransparency || 0.4)
 
-                    Row {
-                        anchors.fill: parent
-                        anchors.leftMargin: 10
-                        spacing: 10
-
-                        Image {
-                            anchors.verticalCenter: parent.verticalCenter
-                            source: typeof Config.previewMode !== 'undefined' && Config.previewMode ? Qt.resolvedUrl("../theme/icons/" + modelData.icon) : ""
-                            width: 32
-                            height: 32
-                            fillMode: Image.PreserveAspectFit
-                        }
-
-                        Text {
-                            anchors.verticalCenter: parent.verticalCenter
-                            text: modelData.text
-                            color: modelData.selected ? (Config.scheme.text || "#dce8e6") : (Config.scheme.textDark || "#a2adac")
-                            font.pixelSize: 22
-                            font.family: "Google Sans Flex"
-                        }
+                    Text {
+                        anchors.left: parent.left
+                        anchors.leftMargin: 20
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: modelData.text
+                        color: modelData.selected ? (Config.scheme.text || "#dce8e6") : (Config.scheme.textDark || "#a2adac")
+                        font.pixelSize: 22
+                        font.family: "Google Sans Flex"
                     }
                 }
             }

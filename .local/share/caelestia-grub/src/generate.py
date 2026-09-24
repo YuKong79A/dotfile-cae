@@ -62,9 +62,9 @@ def get_shell_config():
         "rounding_item": 12,
         "wallpaperRecolor": True,
         "wallpaperRecolorStrength": 1.0,
-        "item_height": 48,
-        "item_padding": 4,
-        "item_spacing": 16,
+        "item_height": 52,
+        "item_padding": 10,
+        "item_spacing": 20,
         "timeout_height": 12
     }
 
@@ -101,14 +101,7 @@ def get_shell_config():
                 if "large" in rounding:
                     config["rounding_item"] = rounding["large"]
 
-                padding = data.get("appearance", {}).get("padding", {})
-                if "extraExtraLarge" in padding:
-                    config["item_height"] = padding["extraExtraLarge"]
-                if "large" in padding:
-                    config["item_padding"] = padding["large"]
-                    config["timeout_height"] = padding["large"]
-
-                config["item_spacing"] = config.get("item_height", 36) + config.get("item_padding", 12) // 2
+                # Keep boot-menu geometry independent of desktop padding tokens.
         except:
             pass
 

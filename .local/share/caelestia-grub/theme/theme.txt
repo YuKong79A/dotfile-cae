@@ -9,16 +9,19 @@ terminal-height: "60%"
 terminal-border: "0"
 
 + boot_menu {
-  left = 21%
-  top = 21%
-  width = 58%
+  left = 20.3125%
+  top = 22.2222%
+  width = 59.375%
   height = 48%
   item_font = "Google Sans Flex Regular 22"
   item_color = "#847269"
   selected_item_color = "#f8e1d7"
-  item_height = 48
-  item_padding = 4
-  item_spacing = 16
+  icon_width = 0
+  icon_height = 0
+  item_icon_space = 0
+  item_height = 52
+  item_padding = 10
+  item_spacing = 20
   menu_pixmap_style = ""
   item_pixmap_style = "item_*.png"
   selected_item_pixmap_style = "select_*.png"

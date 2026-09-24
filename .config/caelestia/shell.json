@@ -37,7 +37,10 @@
         },
         "videoWallpaperPaused": false,
         "visualiser": {
-            "enabled": true
+            "autoHide": true,
+            "blur": false,
+            "enabled": true,
+            "renderer": "cpu"
         }
     },
     "bar": {
@@ -85,7 +88,7 @@
                     "id": "workspaces"
                 },
                 {
-                    "enabled": true,
+                    "enabled": false,
                     "id": "github"
                 },
                 {
@@ -156,7 +159,6 @@
         "randomizeMediaShapeColors": false,
         "replaceMediaLyricsWithVisuals": false,
         "showHyprlandSplash": true,
-        "syncMediaShapesToBeat": false,
         "useMediaShapes": false
     },
     "general": {
@@ -198,9 +200,8 @@
         "profilePicShape": 12
     },
     "services": {
-        "clockFormat": "TwentyFourHour",
+        "clockFormat": "TwelveHour",
         "pipPaused": true,
-        "useTwelveHourClock": true,
         "weatherLocation": "Tangshan, China"
     },
     "shimeji": {

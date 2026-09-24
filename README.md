@@ -42,7 +42,7 @@ The repository currently includes:
 - `.local/share/icons/Papirus-caelestia-dark/`: a snapshot of the generated Papirus icon theme. Subsequent palette changes are runtime output, not intentional configuration edits.
 - `.face`: the user's profile image.
 
-The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, unrelated Fish plugins, Kitty configuration, the Google Sans Flex installer, or system-level configuration. In particular, `~/.codex/config.toml`, Airlock's `/etc/xdg/quickshell/astra-airlock` configuration, the privileged GRUB deployment helper, `/etc/default/grub`, and `/boot/grub/themes/caelestia-nexus` must be checked or recreated separately. Do not claim that these items can be restored from this repository.
+The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, unrelated Fish plugins, Kitty configuration, mpv or Celluloid configuration, the Google Sans Flex installer, or system-level configuration. In particular, `~/.codex/config.toml`, Airlock's `/etc/xdg/quickshell/astra-airlock` configuration, the privileged GRUB deployment helper, `/etc/default/grub`, and `/boot/grub/themes/caelestia-nexus` must be checked or recreated separately. Do not claim that these items can be restored from this repository.
 
 ## Codex Skill
 

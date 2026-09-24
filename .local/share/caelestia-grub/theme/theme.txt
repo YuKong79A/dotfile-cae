@@ -9,9 +9,9 @@ terminal-height: "60%"
 terminal-border: "0"
 
 + boot_menu {
-  left = 20.3125%
-  top = 22.2222%
-  width = 59.375%
+  left = 20%+6
+  top = 22%+2
+  width = 59%+7
   height = 48%
   item_font = "Google Sans Flex Regular 22"
   item_color = "#847269"

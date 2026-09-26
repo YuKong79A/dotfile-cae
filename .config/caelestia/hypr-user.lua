@@ -63,8 +63,136 @@ hl.bind("SHIFT + ALT + TAB", hl.dsp.layout("cycleprev"), { repeating = true })
 hl.unbind("SUPER + P")
 hl.bind("SUPER + P", hl.dsp.exec_cmd("caelestia toggle steam"))
 hl.bind("SUPER + O", hl.dsp.exec_cmd("caelestia toggle on_together"))
-hl.bind("CTRL + SUPER + UP", hl.dsp.exec_cmd("caelestia shell hypr cycleSpecialWorkspace prev"))
-hl.bind("CTRL + SUPER + DOWN", hl.dsp.exec_cmd("caelestia shell hypr cycleSpecialWorkspace next"))
+hl.bind("CTRL + SUPER + ALT + UP", hl.dsp.exec_cmd("caelestia shell hypr cycleSpecialWorkspace prev"))
+hl.bind("CTRL + SUPER + ALT + DOWN", hl.dsp.exec_cmd("caelestia shell hypr cycleSpecialWorkspace next"))
+
+-- ScrollOverview and the scrolling layout shortcuts from dotfile-noc.
+local plugin_path = (os.getenv("HOME") or "/home/yukong") .. "/.local/src/hyprland-scroll-overview/scrolloverview.so"
+hl.plugin.load(plugin_path)
+
+local state_root = os.getenv("XDG_STATE_HOME") or ((os.getenv("HOME") or "/home/yukong") .. "/.local/state")
+local layout_dir = state_root .. "/hyprland"
+local layout_path = layout_dir .. "/layout"
+local layout_file = io.open(layout_path, "r")
+if layout_file then
+    local saved_layout = layout_file:read("*l")
+    layout_file:close()
+    if saved_layout == "dwindle" or saved_layout == "scrolling" then
+        hl.config({ general = { layout = saved_layout } })
+    end
+end
+
+hl.config({ scrolling = { fullscreen_on_one_column = true, wrap_focus = false, wrap_swapcol = false } })
+
+hl.bind("SUPER + J", hl.dsp.layout("togglesplit"))
+hl.bind("SUPER + SHIFT + J", function()
+    local workspace = hl.get_active_workspace()
+    local current_layout = workspace and workspace.tiled_layout or hl.get_config("general.layout")
+    local next_layout = current_layout == "scrolling" and "dwindle" or "scrolling"
+    os.execute("mkdir -p " .. string.format("%q", layout_dir))
+    local state = io.open(layout_path, "w")
+    if state then
+        state:write(next_layout .. "\n")
+        state:close()
+    end
+    hl.config({ general = { layout = next_layout } })
+end)
+
+local function focus_or_wrap(direction, short_direction)
+    return function()
+        local workspace = hl.get_active_workspace()
+        local win = hl.get_active_window()
+        if workspace and workspace.tiled_layout == "scrolling" and win and not win.floating then
+            hl.dispatch(hl.dsp.layout("focus " .. short_direction))
+        else
+            hl.dispatch(hl.dsp.focus({ direction = direction }))
+        end
+    end
+end
+
+for _, direction in ipairs({ "left", "right" }) do
+    hl.unbind("SUPER + " .. direction)
+    hl.bind("SUPER + " .. direction, focus_or_wrap(direction, direction:sub(1, 1)))
+end
+
+local function move_or_swap(direction, short_direction)
+    return function()
+        local workspace = hl.get_active_workspace()
+        if workspace and workspace.tiled_layout == "scrolling" then
+            hl.dispatch(hl.dsp.layout("swapcol " .. short_direction))
+        else
+            hl.dispatch(hl.dsp.window.move({ direction = direction }))
+        end
+    end
+end
+
+for _, direction in ipairs({ "left", "right" }) do
+    hl.unbind("SUPER + SHIFT + " .. direction)
+    hl.bind("SUPER + SHIFT + " .. direction, move_or_swap(direction, direction:sub(1, 1)))
+end
+
+local function scrolling_action(action)
+    return function()
+        local workspace = hl.get_active_workspace()
+        if workspace and workspace.tiled_layout == "scrolling" then
+            hl.dispatch(hl.dsp.layout(action))
+        end
+    end
+end
+
+hl.bind("CTRL + SUPER + UP", scrolling_action("consume"))
+hl.bind("CTRL + SUPER + DOWN", scrolling_action("expel"))
+
+local function resize_window(x_percent, y_percent)
+    return function()
+        local win = hl.get_active_window()
+        if not win or not win.size then return end
+        local workspace = hl.get_active_workspace()
+        if workspace and workspace.tiled_layout == "scrolling" and not win.floating and x_percent ~= 0 then
+            hl.dispatch(hl.dsp.layout(string.format("colresize %+.2f", x_percent / 100)))
+        else
+            hl.dispatch(hl.dsp.window.resize({
+                x = win.size.x * x_percent / 100,
+                y = win.size.y * y_percent / 100,
+                relative = true,
+            }))
+        end
+    end
+end
+
+for _, binding in ipairs({
+    { "SUPER + minus", -10, 0 }, { "SUPER + equal", 10, 0 },
+    { "SUPER + SHIFT + minus", 0, -10 }, { "SUPER + SHIFT + equal", 0, 10 },
+    { "SUPER + ALT + left", -10, 0 }, { "SUPER + ALT + right", 10, 0 },
+    { "SUPER + ALT + up", 0, -10 }, { "SUPER + ALT + down", 0, 10 },
+}) do
+    hl.unbind(binding[1])
+    -- Caelestia defines these names with an initial capital letter.
+    local capitalized = binding[1]:gsub("([%a]+)$", function(key)
+        return key:sub(1, 1):upper() .. key:sub(2)
+    end)
+    hl.unbind(capitalized)
+    hl.bind(binding[1], resize_window(binding[2], binding[3]), { repeating = true })
+end
+
+if hl.plugin and hl.plugin.scrolloverview then
+    hl.config({ plugin = { scrolloverview = {
+        gesture_distance = 300,
+        scale = 0.5,
+        workspace_gap = 100,
+        layout = "vertical",
+        wallpaper = 2,
+        blur = true,
+        shadow = { enabled = true, range = 30 },
+    } } })
+    hl.plugin.scrolloverview.gesture({ fingers = 3, direction = "vertical" })
+end
+
+hl.bind("SUPER + G", function()
+    if hl.plugin and hl.plugin.scrolloverview then
+        hl.plugin.scrolloverview.overview("toggle all")
+    end
+end)
 
 hl.workspace_rule({ workspace = "special:special", layout = "scrolling" })
 hl.workspace_rule({ workspace = "special:communication", layout = "monocle" })

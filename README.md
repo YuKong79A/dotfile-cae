@@ -202,6 +202,7 @@ The theme and wallpaper hooks also run `~/.local/bin/caelestia-grub-sync`. That 
 - The Hyprland startup configuration launches Caelestia Shell, Fcitx5, clipboard-history watchers, and the Bibata-Caelestia cursor. Midnight Shell provides the polkit agent.
 - Clipboard history may contain sensitive information. Use `cliphist wipe` when necessary.
 - Treat the repository's Lua files as authoritative for Hyprland special workspaces, window rules, and key bindings, then validate them against the installed Hyprland version.
+- ScrollOverview is loaded from `$HOME/.local/src/hyprland-scroll-overview/scrolloverview.so`, which is not tracked here. Clone `https://github.com/yayuuu/hyprland-scroll-overview.git` into that directory and run `make` there after restoring or upgrading Hyprland. The Hyprland development headers and build dependencies must match the installed version.
 - Regenerating the Caelestia color scheme may legitimately change generated Papirus icons, Bat/Cava/Yazi colors, the Hyprland scheme, and rendered application themes. Review those changes separately from hand-edited configuration before committing.
 
 ## Post-Restoration Validation

@@ -35,6 +35,8 @@ The repository currently includes:
 - `.config/caelestia/templates/codex.tmTheme` and `.config/caelestia/scripts/sync-codex-theme.sh`: the Caelestia CLI renders a Codex theme and the script links it into the Codex themes directory.
 - `.config/opencode/tui.json`: selects the generated `caelestia` OpenCode theme. The source template and renderer live under `.config/caelestia/`; the generated `~/.config/opencode/themes/caelestia.json` is intentionally not tracked.
 - `.config/xdg-terminals.list`: XDG terminal preference order.
+- `.config/fcitx5/config`, `.config/fcitx5/profile`, `.config/fcitx5/conf/classicui.conf`, and the two tracked Rime custom YAML files: Fcitx5 input method settings and the Wanxiang Pro scheme selection. Restore with `fcitx5-rime`, `fcitx5-gtk`, `fcitx5-qt`, `rime-wanxiang-pro-flypy`, and `rime-wanxiang-pro-data-flypy-fuzhu` installed. Rime user databases and generated build files are not tracked.
+- `.config/environment.d/ime.conf`, `.gtkrc-2.0`, and `.config/gtk-{3,4}.0/settings.ini`: Fcitx5 session variables and GTK input method settings. Log out and back in after restoring the environment file.
 - `.local/bin/`: personal wallpaper, terminal, and transparency helper scripts; `pac`, `pacr`, and `pacrrr`; the Bibata-Caelestia cursor builder; and the GRUB synchronization wrapper.
 - `.config/caelestia/templates/bibata/`: SVG sources for the Bibata-Caelestia cursor. The theme hook builds `~/.local/share/icons/Bibata-Caelestia` at size 24.
 - `.local/share/caelestia-grub/`: source artwork, generator, and theme assets for the Caelestia GRUB theme. Generated, palette-dependent images are rebuilt locally.

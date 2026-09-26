@@ -1,0 +1,7 @@
+patch:
+  schema_list:
+    - schema: wanxiang_pro
+    - schema: wanxiang_english
+  "key_binder/bindings/+":
+    - {when: always, accept: Control+space, select: .next}
+    - {when: always, accept: Control+period, toggle: ascii_punct}

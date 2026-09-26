@@ -1,0 +1,8 @@
+#!/bin/sh
+# Load the VapourSynth-enabled libmpv for Tsukimi.
+if ! pgrep -u "$(id -u)" -x SVPManager >/dev/null 2>&1; then
+    "$HOME/.local/opt/svp4/SVPManager" >/dev/null 2>&1 &
+fi
+mpv_lib="$HOME/.local/opt/mpv-svp/lib"
+export LD_LIBRARY_PATH="$mpv_lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+exec /usr/bin/tsukimi "$@"

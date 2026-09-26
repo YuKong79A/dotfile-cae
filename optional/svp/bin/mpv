@@ -1,0 +1,6 @@
+#!/bin/sh
+# Start the locally built mpv with SVP available.
+if ! pgrep -u "$(id -u)" -x SVPManager >/dev/null 2>&1; then
+    "$HOME/.local/opt/svp4/SVPManager" >/dev/null 2>&1 &
+fi
+exec "$HOME/.local/opt/mpv-svp/bin/mpv" "$@"

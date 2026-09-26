@@ -41,10 +41,11 @@ The repository currently includes:
 - `.config/caelestia/templates/bibata/`: SVG sources for the Bibata-Caelestia cursor. The theme hook builds `~/.local/share/icons/Bibata-Caelestia` at size 24.
 - `.local/share/caelestia-grub/`: source artwork, generator, and theme assets for the Caelestia GRUB theme. Generated, palette-dependent images are rebuilt locally.
 - `.local/share/applications/foot-caelestia.desktop`: the Caelestia-aware Foot desktop entry.
+- `optional/svp/`: an inactive, opt-in snapshot of the standalone mpv and Tsukimi mpv configurations, SVP launch wrappers, and restore instructions. The normal tracked-file restore copies this directory into the home directory but does not install its files into `~/.config` or enable SVP.
 - `.local/share/icons/Papirus-caelestia-dark/`: a snapshot of the generated Papirus icon theme. Subsequent palette changes are runtime output, not intentional configuration edits.
 - `.face`: the user's profile image.
 
-The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, unrelated Fish plugins, Kitty configuration, mpv or Celluloid configuration, the Google Sans Flex installer, or system-level configuration. In particular, `~/.codex/config.toml`, Airlock's `/etc/xdg/quickshell/astra-airlock` configuration, the privileged GRUB deployment helper, `/etc/default/grub`, and `/boot/grub/themes/caelestia-nexus` must be checked or recreated separately. Do not claim that these items can be restored from this repository.
+The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, unrelated Fish plugins, Kitty or Celluloid configuration, SVP/mpv/libmpv/uosc binaries, the Google Sans Flex installer, or system-level configuration. The optional SVP snapshot is configuration only and requires a separate activation step. In particular, `~/.codex/config.toml`, Airlock's `/etc/xdg/quickshell/astra-airlock` configuration, the privileged GRUB deployment helper, `/etc/default/grub`, and `/boot/grub/themes/caelestia-nexus` must be checked or recreated separately. Do not claim that these items can be restored from this repository.
 
 ## Codex Skill
 
@@ -155,6 +156,7 @@ Inspect first and install only what is missing. Repository scripts may require a
 - `papirus-icon-theme`; Maple Mono NF CN; Google Sans Flex, MiSans, Source Serif 4, LXGW WenKai Screen, and Noto Color Emoji for the configured font fallback order
 - Python bindings for GObject/RSVG and Cairo to build the Bibata-Caelestia cursor; PyQt6 and Pillow for the GRUB theme generator
 - Optional components: LibreOffice, Fcitx5, Cava, Bat, Codex CLI, OpenCode, Airlock, and `arch-update`
+- SVP 4 Linux with a VapourSynth-enabled mpv/libmpv, Tsukimi, and uosc only if the optional SVP setup is selected
 
 On Arch or CachyOS, query installed packages and use `pacman -Si` or `paru -Si` to confirm package names before installation. Do not install guessed package names from this README without checking them, and do not assume that an AUR helper is available.
 
@@ -188,6 +190,10 @@ sudo -n astra-airlock --sync
 The hook skips this step if Airlock is absent, but synchronization may fail if its narrowly scoped command is not authorized on the new system. Inspect Airlock, sudoers, greetd, and the active display-manager configuration first. Do not broaden sudo permissions merely to suppress the error.
 
 The theme and wallpaper hooks also run `~/.local/bin/caelestia-grub-sync`. That wrapper regenerates GRUB artwork and calls `sudo -n /usr/local/sbin/caelestia-grub-deploy`. The privileged helper and installed `/boot` theme are not in this backup. On a fresh system, review and deploy them separately, then set `GRUB_THEME` in `/etc/default/grub` and regenerate `grub.cfg` as appropriate for that installation. Until the helper exists and is authorized, the GRUB hook can fail; check its result when changing wallpapers.
+
+## Optional SVP restoration for mpv and Tsukimi
+
+The `optional/svp/` directory holds the source machine's two mpv configuration files, the Tsukimi hardware-decoding hook, the standalone mpv socket and uosc settings, and portable launch wrappers. It is not activated by the normal dotfiles restoration. To opt in after installing the applications, follow [`optional/svp/README.md`](optional/svp/README.md) in order: build a VapourSynth-enabled mpv/libmpv, install SVP and uosc, back up conflicting files, copy the optional configuration, select the desktop launchers, set Tsukimi's GSettings keys, and verify a video. The included `nvdec-copy` setting is tailored to NVIDIA hardware; adapt it on a different GPU.
 
 ## Current Desktop Behavior
 

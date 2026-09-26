@@ -21,6 +21,7 @@
             "scale": 1
         },
         "islands": false,
+        "pitchBlack": false,
         "transparency": {
             "base": 0.8013157894736842,
             "enabled": true
@@ -28,7 +29,15 @@
     },
     "background": {
         "desktopClock": {
-            "enabled": false
+            "background": {
+                "enabled": true
+            },
+            "enabled": true,
+            "invertColors": false,
+            "position": "top-left",
+            "shadow": {
+                "enabled": true
+            }
         },
         "desktopLyrics": {
             "enabled": true,
@@ -50,14 +59,23 @@
             "showOnHover": true
         },
         "clock": {
-            "background": false,
-            "showDate": true
+            "background": true,
+            "showDate": true,
+            "showSeconds": false
+        },
+        "dock": {
+            "monitorCenter": true,
+            "recolourIcons": false
         },
         "entries": {
             "center": [
                 {
-                    "enabled": true,
+                    "enabled": false,
                     "id": "activeWindow"
+                },
+                {
+                    "enabled": true,
+                    "id": "dock"
                 }
             ],
             "end": [
@@ -104,6 +122,7 @@
             "activeWindow": true,
             "tray": true
         },
+        "position": "bottom",
         "spotify": {
             "autoHide": true,
             "background": true,
@@ -112,16 +131,57 @@
             "maxTitleLength": 25,
             "showVisualiser": true
         },
+        "statusIcons": [
+            {
+                "enabled": true,
+                "id": "kbLayout"
+            },
+            {
+                "enabled": true,
+                "id": "lockStatus"
+            },
+            {
+                "enabled": false,
+                "id": "audio"
+            },
+            {
+                "enabled": false,
+                "id": "microphone"
+            },
+            {
+                "enabled": true,
+                "id": "network"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": true,
+                "id": "battery"
+            },
+            {
+                "enabled": false,
+                "id": "peripheralBattery"
+            },
+            {
+                "enabled": true,
+                "id": "notifications"
+            }
+        ],
         "tray": {
-            "background": false,
-            "compact": true,
+            "background": true,
+            "compact": false,
             "recolour": true
         },
         "workspaces": {
-            "activeTrail": false,
+            "activeIndicator": true,
+            "activeTrail": true,
             "occupiedBg": false,
-            "showWindows": true,
-            "showWindowsOnSpecialWorkspaces": true,
+            "showUnoccupied": false,
+            "showWindows": false,
+            "showWindowsOnSpecialWorkspaces": false,
+            "shown": 5,
             "specialWorkspaceIcons": [
                 {
                     "flags": "",
@@ -155,11 +215,11 @@
     },
     "dashboard": {
         "colorizeMediaGif": true,
-        "profilePicShape": 19,
+        "profilePicShape": 20,
         "randomizeMediaShapeColors": false,
         "replaceMediaLyricsWithVisuals": false,
-        "showHyprlandSplash": true,
-        "useMediaShapes": false
+        "showClockSeconds": false,
+        "showHyprlandSplash": true
     },
     "general": {
         "apps": {
@@ -193,11 +253,13 @@
     },
     "launcher": {
         "favouriteApps": [
-            "wechat"
+            "wechat",
+            "moe.tsuna.tsukimi",
+            "net.lutris.elden-ring-chdf-4"
         ]
     },
     "lock": {
-        "profilePicShape": 12
+        "profilePicShape": 19
     },
     "services": {
         "clockFormat": "TwelveHour",
@@ -210,7 +272,7 @@
     "utilities": {
         "gameMode": {
             "autoEnableRegexes": [
-                "steam_app_default"
+                "steam_proton"
             ]
         },
         "quickToggles": [

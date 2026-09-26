@@ -63,6 +63,10 @@ if status is-interactive
     # NyxNiri cache cleanup helper
     alias clean='$HOME/.config/fish/clean-cache'
 
+    # WitchyBND: unpack an archive, or repack its extracted folder.
+    alias wunpack='/home/yukong/Games/GameFiles/WitchyBND/WitchyBND -s -u'
+    alias wpack='/home/yukong/Games/GameFiles/WitchyBND/WitchyBND -s -r'
+
     # sched-ext LAVD profiles
     alias scxgame='scxctl switch --sched scx_lavd --mode gaming'
     alias scxauto='scxctl switch --sched scx_lavd --mode auto'

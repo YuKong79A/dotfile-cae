@@ -133,14 +133,6 @@
         },
         "statusIcons": [
             {
-                "enabled": true,
-                "id": "kbLayout"
-            },
-            {
-                "enabled": true,
-                "id": "lockStatus"
-            },
-            {
                 "enabled": false,
                 "id": "audio"
             },
@@ -159,6 +151,10 @@
             {
                 "enabled": true,
                 "id": "battery"
+            },
+            {
+                "enabled": true,
+                "id": "lockStatus"
             },
             {
                 "enabled": false,

@@ -73,7 +73,30 @@ hl.workspace_rule({ workspace = "special:sysmon", layout = "monocle" })
 
 hl.window_rule({ match = { class = "^(Zoom)$" }, float = true, center = true })
 hl.window_rule({ match = { class = "^Chat$" }, float = true })
+hl.window_rule({
+    match = { class = "^mpv$" },
+    opaque = true,
+    opacity = "1.0 override 1.0 override 1.0 override",
+    float = true,
+    size = { 1280, 720 },
+    idle_inhibit = "focus",
+})
+hl.window_rule({
+    match = { class = "^mpv$", float = true },
+    dim_around = true,
+    keep_aspect_ratio = true,
+    stay_focused = true,
+    center = true,
+})
+hl.window_rule({ match = { class = "^mpv$", float = false }, pseudo = true })
+hl.window_rule({ match = { class = "^SVPManager$" }, workspace = "special:special silent" })
+hl.window_rule({
+    match = { class = "moe.tsuna.tsukimi" },
+    opacity = "1.0 override 1.0 override 1.0 override",
+    opaque = true,
+})
 hl.window_rule({ match = { class = "^(slack|com.rtosta.zapzap)$" }, workspace = "special:communication" })
+hl.window_rule({ match = { class = "^wechat$" }, workspace = "special:communication silent" })
 hl.window_rule({
     match = {
         class = "^(Thunar|thunar)$",

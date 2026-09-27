@@ -3,10 +3,11 @@ set -euo pipefail
 
 icons_dir="${XDG_DATA_HOME:-$HOME/.local/share}/icons"
 source_theme="${CAELESTIA_PAPIRUS_SOURCE:-/usr/share/icons/Papirus-Dark}"
+app_theme="${CAELESTIA_APP_ICON_THEME:-WhiteSur-dark}"
 theme_name="${CAELESTIA_ICON_THEME:-Papirus-caelestia-dark}"
 theme_dir="$icons_dir/$theme_name"
 stamp_file="$theme_dir/.caelestia-accent"
-template_version="6"
+template_version="8"
 version_file="$theme_dir/.caelestia-template-version"
 
 # Prefer the colour supplied by Caelestia's post-hook. Fall back to generated GTK CSS.
@@ -32,6 +33,8 @@ if [[ ! "$accent" =~ ^#[0-9A-Fa-f]{6}$ ]]; then
 fi
 [[ "$accent_fg" =~ ^#[0-9A-Fa-f]{6}$ ]] || accent_fg="#ffffff"
 [[ -d "$source_theme" ]] || { echo "sync-papirus-icons: missing $source_theme" >&2; exit 1; }
+[[ -d "$icons_dir/$app_theme/apps" ]] || { echo "sync-papirus-icons: missing $icons_dir/$app_theme/apps" >&2; exit 1; }
+[[ -d "$icons_dir/$app_theme/mimes" ]] || { echo "sync-papirus-icons: missing $icons_dir/$app_theme/mimes" >&2; exit 1; }
 
 dark_accent="$(ACCENT="$accent" perl -e '
   (my $hex = $ENV{ACCENT}) =~ s/^#//;
@@ -78,14 +81,35 @@ while IFS= read -r -d '' file; do
   directories+=("$rel_dir")
 done < <(find -L "$source_theme" -type f -path '*/places/*' \( "${find_expr[@]}" \) -print0)
 mapfile -t directories < <(printf '%s\n' "${directories[@]}" | sort -u)
+app_directories=(apps/16 apps/22 apps/32 apps/scalable apps/symbolic)
+mime_directories=(mimes/16 mimes/22 mimes/scalable mimes/symbolic)
+ln -s "../$app_theme/apps" "$theme_dir/apps"
+ln -s "../$app_theme/mimes" "$theme_dir/mimes"
 
 if ((${#directories[@]})); then
-  joined="$(IFS=,; printf '%s' "${directories[*]}")"
+  all_directories=("${directories[@]}" "${app_directories[@]}" "${mime_directories[@]}")
+  joined="$(IFS=,; printf '%s' "${all_directories[*]}")"
   printf 'Directories=%s\n\n' "$joined" >> "$theme_dir/index.theme"
 fi
 for rel in "${directories[@]}"; do
   size="${rel%%x*}"
   [[ "$size" =~ ^[0-9]+$ ]] && printf '[%s]\nContext=Places\nSize=%s\nType=Fixed\n\n' "$rel" "$size" >> "$theme_dir/index.theme"
+done
+for rel in "${mime_directories[@]}"; do
+  size="${rel#mimes/}"
+  case "$size" in
+    scalable) printf '[%s]\nContext=MimeTypes\nSize=64\nMinSize=24\nMaxSize=512\nType=Scalable\n\n' "$rel" >> "$theme_dir/index.theme" ;;
+    symbolic) printf '[%s]\nContext=MimeTypes\nSize=16\nMinSize=16\nMaxSize=512\nType=Scalable\n\n' "$rel" >> "$theme_dir/index.theme" ;;
+    *) printf '[%s]\nContext=MimeTypes\nSize=%s\nType=Fixed\n\n' "$rel" "$size" >> "$theme_dir/index.theme" ;;
+  esac
+done
+for rel in "${app_directories[@]}"; do
+  size="${rel#apps/}"
+  case "$size" in
+    scalable) printf '[%s]\nContext=Applications\nSize=64\nMinSize=16\nMaxSize=512\nType=Scalable\n\n' "$rel" >> "$theme_dir/index.theme" ;;
+    symbolic) printf '[%s]\nContext=Applications\nSize=16\nMinSize=16\nMaxSize=512\nType=Scalable\n\n' "$rel" >> "$theme_dir/index.theme" ;;
+    *) printf '[%s]\nContext=Applications\nSize=%s\nType=Fixed\n\n' "$rel" "$size" >> "$theme_dir/index.theme" ;;
+  esac
 done
 
 while IFS= read -r -d '' file; do

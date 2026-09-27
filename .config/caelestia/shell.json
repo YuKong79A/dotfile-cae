@@ -33,11 +33,8 @@
                 "enabled": true
             },
             "enabled": true,
-            "invertColors": false,
-            "position": "top-left",
-            "shadow": {
-                "enabled": true
-            }
+            "invertColors": true,
+            "position": "top-left"
         },
         "desktopLyrics": {
             "enabled": true,
@@ -69,10 +66,6 @@
         },
         "entries": {
             "center": [
-                {
-                    "enabled": false,
-                    "id": "activeWindow"
-                },
                 {
                     "enabled": true,
                     "id": "dock"
@@ -106,10 +99,6 @@
                     "id": "workspaces"
                 },
                 {
-                    "enabled": false,
-                    "id": "github"
-                },
-                {
                     "enabled": true,
                     "id": "spotify"
                 }
@@ -133,14 +122,6 @@
         },
         "statusIcons": [
             {
-                "enabled": false,
-                "id": "audio"
-            },
-            {
-                "enabled": false,
-                "id": "microphone"
-            },
-            {
                 "enabled": true,
                 "id": "network"
             },
@@ -155,10 +136,6 @@
             {
                 "enabled": true,
                 "id": "lockStatus"
-            },
-            {
-                "enabled": false,
-                "id": "peripheralBattery"
             },
             {
                 "enabled": true,
@@ -249,9 +226,10 @@
     },
     "launcher": {
         "favouriteApps": [
+            "net.lutris.elden-ring-chdf-4",
             "wechat",
-            "moe.tsuna.tsukimi",
-            "net.lutris.elden-ring-chdf-4"
+            "svp-manager4",
+            "moe.tsuna.tsukimi"
         ]
     },
     "lock": {
@@ -259,7 +237,8 @@
     },
     "services": {
         "clockFormat": "TwelveHour",
-        "pipPaused": true,
+        "gpuType": "Nvidia",
+        "pipPaused": false,
         "weatherLocation": "Tangshan, China"
     },
     "shimeji": {

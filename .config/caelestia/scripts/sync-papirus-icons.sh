@@ -7,7 +7,7 @@ app_theme="${CAELESTIA_APP_ICON_THEME:-WhiteSur-dark}"
 theme_name="${CAELESTIA_ICON_THEME:-Papirus-caelestia-dark}"
 theme_dir="$icons_dir/$theme_name"
 stamp_file="$theme_dir/.caelestia-accent"
-template_version="8"
+template_version="9"
 version_file="$theme_dir/.caelestia-template-version"
 
 # Prefer the colour supplied by Caelestia's post-hook. Fall back to generated GTK CSS.
@@ -136,4 +136,13 @@ for gtk_dir in "${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0" "${XDG_CONFIG_HOME:-$
     printf '[Settings]\ngtk-icon-theme-name=%s\n' "$theme_name" > "$settings"
   fi
 done
-command -v gsettings >/dev/null 2>&1 && gsettings set org.gnome.desktop.interface icon-theme "$theme_name" >/dev/null 2>&1 || true
+if command -v gsettings >/dev/null 2>&1; then
+  current_theme="$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null)" || current_theme=""
+  if [[ "$current_theme" == "'$theme_name'" ]]; then
+    # GTK apps keep the old icon theme in memory when its files are rebuilt.
+    # Changing away briefly makes Thunar reload the rebuilt folder icons.
+    gsettings set org.gnome.desktop.interface icon-theme hicolor >/dev/null 2>&1 || true
+    sleep 0.1
+  fi
+  gsettings set org.gnome.desktop.interface icon-theme "$theme_name" >/dev/null 2>&1 || true
+fi

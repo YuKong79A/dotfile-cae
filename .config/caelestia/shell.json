@@ -230,6 +230,9 @@
             "wechat",
             "svp-manager4",
             "moe.tsuna.tsukimi"
+        ],
+        "hiddenApps": [
+            "thunar-settings"
         ]
     },
     "lock": {

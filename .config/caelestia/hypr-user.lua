@@ -217,6 +217,10 @@ hl.window_rule({
     center = true,
 })
 hl.window_rule({ match = { class = "^mpv$", float = false }, pseudo = true })
+-- SUPER + P toggles the special:steam workspace.
+hl.window_rule({ match = { class = "^[Ss]team$" }, workspace = "special:steam silent" })
+hl.window_rule({ match = { class = "^net[.]lutris[.]Lutris$" }, workspace = "special:steam silent" })
+hl.window_rule({ match = { class = "^steam_proton$", initial_title = "^ELDEN RING™$" }, workspace = "special:steam silent" })
 hl.window_rule({ match = { class = "^SVPManager$" }, workspace = "special:special silent" })
 hl.window_rule({
     match = { class = "moe.tsuna.tsukimi" },

@@ -101,11 +101,16 @@
                 {
                     "enabled": true,
                     "id": "spotify"
+                },
+                {
+                    "enabled": true,
+                    "id": "github"
                 }
             ]
         },
         "github": {
-            "background": true
+            "background": true,
+            "recolourIcons": true
         },
         "popouts": {
             "activeWindow": true,

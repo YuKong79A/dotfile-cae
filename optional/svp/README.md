@@ -47,6 +47,13 @@ The standalone mpv configuration disables its built-in OSC. Install
 before using that configuration, including uosc's `scripts/` and `fonts/`.
 The included `script-opts/uosc.conf` selects Simplified Chinese first.
 
+SVP's `libsvpflow1.so` on this machine uses VapourSynth API 3. Newer system
+VapourSynth releases, including R80, no longer load that API. The included
+launchers explicitly select SVP's bundled VSScript library and Python module
+from `$HOME/.local/opt/svp4/mpv`, so the SVP plugin works without changing the
+system VapourSynth package. Keep those bundled files and use the launchers;
+after an SVP update, recheck their paths and compatibility.
+
 ## 2. Back up and restore the optional configuration
 
 Run these commands after restoring the main repository. Inspect the target
@@ -124,6 +131,8 @@ luac -p "$HOME/.config/mpv/scripts/mpvSockets.lua" \
   "$HOME/.config/tsukimi-svp/scripts/hwdec-copy.lua"
 "$HOME/.local/opt/mpv-svp/bin/mpv" --vf=help | grep vapoursynth
 gsettings get moe.tsuna.tsukimi mpv-config-path
+test -f "$HOME/.local/opt/svp4/mpv/libvapoursynth-script.so.0"
+test -f "$HOME/.local/opt/svp4/mpv/python/vapoursynth.so"
 ```
 
 Open a video in Tsukimi through its desktop entry, enable interpolation in

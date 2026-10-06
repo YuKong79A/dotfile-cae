@@ -68,7 +68,7 @@
             "center": [
                 {
                     "enabled": true,
-                    "id": "dock"
+                    "id": "activeWindow"
                 }
             ],
             "end": [
@@ -116,13 +116,13 @@
             "activeWindow": true,
             "tray": true
         },
-        "position": "bottom",
+        "position": "left",
         "spotify": {
             "autoHide": true,
             "background": true,
             "horizontalVolume": true,
             "inverted": false,
-            "maxTitleLength": 25,
+            "maxTitleLength": 10,
             "showVisualiser": true
         },
         "statusIcons": [
@@ -149,7 +149,7 @@
         ],
         "tray": {
             "background": true,
-            "compact": false,
+            "compact": true,
             "recolour": true
         },
         "workspaces": {
@@ -254,7 +254,9 @@
     "utilities": {
         "gameMode": {
             "autoEnableRegexes": [
-                "steam_proton"
+                "steam_proton",
+                "steam_app_1203220",
+                "steam_app_default"
             ]
         },
         "quickToggles": [

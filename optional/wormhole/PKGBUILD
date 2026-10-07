@@ -1,6 +1,6 @@
 pkgname=xdg-desktop-portal-wormhole
 pkgver=1.0.2
-pkgrel=1
+pkgrel=2
 pkgdesc='Material 3 Expressive desktop portal for Wayland'
 arch=('x86_64')
 url='https://github.com/AstraSuite/Wormhole'
@@ -8,8 +8,15 @@ license=('GPL-3.0-only')
 depends=('xdg-desktop-portal' 'qt6-base' 'qt6-declarative' 'qt6-svg' 'qt6-multimedia' 'qt6-wayland' 'pipewire' 'wayland' 'glib2')
 makedepends=('git' 'cmake' 'gcc' 'pkgconf' 'wayland-protocols')
 options=('!debug')
-source=('wormhole::git+https://github.com/AstraSuite/Wormhole.git#commit=49e30599c4196cb52b550e2c7aea82c66ee81ff7')
-sha256sums=('SKIP')
+source=('wormhole::git+https://github.com/AstraSuite/Wormhole.git#commit=49e30599c4196cb52b550e2c7aea82c66ee81ff7'
+        'folder-icon.patch')
+sha256sums=('SKIP'
+            'd404fe5e39e00d75794613f828daf24be1e48a89ecf0a25969874b04966764b6')
+
+prepare() {
+    cd "$srcdir/wormhole"
+    patch -p1 -i "$srcdir/folder-icon.patch"
+}
 
 build() {
     cmake -S "$srcdir/wormhole" -B "$srcdir/build" \

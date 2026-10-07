@@ -1,0 +1,7 @@
+diff --git a/src/core/fileutils.cpp b/src/core/fileutils.cpp
+index 15df5d8..d5c7377 100644
+--- a/src/core/fileutils.cpp
++++ b/src/core/fileutils.cpp
+@@ -332 +332 @@ QString FileUtils::iconForFile(const QString& name, bool isDir, const QString& m
+-        return QStringLiteral("image://icon/inode-directory");
++        return QStringLiteral("image://icon/folder");

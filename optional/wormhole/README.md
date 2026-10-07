@@ -18,6 +18,10 @@ The pinned source revision embeds its own FileChooser, so the README's older
 Atlas runtime requirement does not apply to this revision. Recheck this when
 updating the source commit.
 
+The local `folder-icon.patch` makes ordinary directories request the theme's
+`folder` icon. Without it, Wormhole requests `inode-directory`, which resolves
+to an outline icon instead of the Caelestia-coloured folder used elsewhere.
+
 Validate with `systemctl --user status xdg-desktop-portal-wormhole.service`
 after a portal request. A file chooser request should create a window with
 class `wormhole`.

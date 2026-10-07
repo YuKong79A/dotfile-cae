@@ -7,7 +7,7 @@ app_theme="${CAELESTIA_APP_ICON_THEME:-WhiteSur-dark}"
 theme_name="${CAELESTIA_ICON_THEME:-Papirus-caelestia-dark}"
 theme_dir="$icons_dir/$theme_name"
 stamp_file="$theme_dir/.caelestia-accent"
-template_version="9"
+template_version="10"
 version_file="$theme_dir/.caelestia-template-version"
 
 # Prefer the colour supplied by Caelestia's post-hook. Fall back to generated GTK CSS.
@@ -61,7 +61,8 @@ printf '%s\n' \
 
 icon_names=(
   desktop.svg folder.svg folder-blue.svg folder-blue-open.svg folder-home.svg
-  folder-desktop.svg folder-documents.svg folder-download.svg folder-music.svg
+  folder-desktop.svg folder-development.svg folder-documents.svg folder-download.svg
+  folder-games.svg folder-music.svg
   folder-open.svg folder-pictures.svg folder-projects.svg folder-publicshare.svg
   folder-templates.svg folder-video.svg folder-videos.svg folder-videos-open.svg
   user-desktop.svg user-home.svg user-home-open.svg

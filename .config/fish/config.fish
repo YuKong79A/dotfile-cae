@@ -70,6 +70,27 @@ if status is-interactive
     alias scxgame='scxctl switch --sched scx_lavd --mode gaming'
     alias scxauto='scxctl switch --sched scx_lavd --mode auto'
     alias scxstatus='scxctl get'
+    alias osstatus='omenstatus'
+
+    function omenstatus --description '查看 OMEN、风扇、电源、调度器和显卡状态'
+        printf '\n[OMEN 性能档]\n'
+        omen-cli power info
+
+        printf '\n[风扇]\n'
+        omen-cli fan info
+
+        printf '\n[系统电源档位]\n'
+        powerprofilesctl get
+
+        printf '\n[CachyOS 调度器]\n'
+        scxctl get
+
+        printf '\n[NVIDIA 显卡]\n'
+        nvidia-smi --query-gpu=name,driver_version,temperature.gpu,utilization.gpu --format=csv,noheader
+
+        printf '\n[OMEN 后台服务]\n'
+        systemctl is-active omen-space-daemon.service
+    end
 
     # NyxNiri one-command system update
     function up --description "一键系统与软件包更新 (Arch / CachyOS)"

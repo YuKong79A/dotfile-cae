@@ -1,7 +1,7 @@
 return {
 	-- Apps
 	terminal = "foot",
-	browser = "helium-browser",
+	browser = "firefox",
 	fileExplorer = "thunar",
 	audioSettings = "pwvucontrol",
 

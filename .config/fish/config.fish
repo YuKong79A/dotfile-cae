@@ -71,7 +71,7 @@ if status is-interactive
     alias scxauto='scxctl switch --sched scx_lavd --mode auto'
     alias scxstatus='scxctl get'
     alias osstatus='omenstatus'
-    alias adl='aria2c -d $HOME/Download -x 16 -s 16 -k 1M -c'
+    alias adl='aria2c -d $HOME/Downloads/ -x 16 -s 16 -k 1M -c'
 
     function omenstatus --description '查看 OMEN、风扇、电源、调度器和显卡状态'
         printf '\n[OMEN 性能档]\n'

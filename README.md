@@ -188,7 +188,7 @@ bash "$HOME/.config/caelestia/scripts/sync-codex-theme.sh"
 
 LazyVim uses `colorscheme = "caelestia"` from the tracked plugin configuration. For Codex, set `theme = "caelestia"` under `[tui]` in the machine-local `~/.codex/config.toml`, or choose it with `/theme`. The `.tmTheme` controls Codex syntax colors; it does not recolor the entire TUI, including the slash-command selection bar.
 
-The cursor post-hook builds `~/.local/share/icons/Bibata-Caelestia` from the tracked SVG templates. Hyprland selects that cursor at size 24. Check the built theme before logging in again.
+The cursor post-hook builds `~/.local/share/icons/Bibata-Caelestia` from the tracked SVG templates. Hyprland selects that cursor at size 24. Check the built theme before logging in again. If `/usr/local/sbin/caelestia-cursor-deploy` exists, the hook also copies the theme to `/usr/share/icons/Bibata-Caelestia` for Airlock's `greeter` account. That root helper and its sudoers rule are system-level state and must be restored separately.
 
 When Airlock is installed, the current theme and wallpaper post-hooks in `cli.json` invoke:
 

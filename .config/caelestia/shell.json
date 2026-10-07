@@ -34,7 +34,7 @@
             },
             "enabled": true,
             "invertColors": true,
-            "position": "top-left"
+            "position": "top-right"
         },
         "desktopLyrics": {
             "enabled": true,

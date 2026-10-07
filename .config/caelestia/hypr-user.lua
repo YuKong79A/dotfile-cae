@@ -29,7 +29,7 @@ hl.config({
 
 -- Monitors
 hl.monitor({
-    output = "eDP-1",
+    output = "desc:BOE 0x09E5",
     disabled = false,
     mode = "2560x1440@165.00Hz",
     position = "0x0",

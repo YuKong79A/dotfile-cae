@@ -27,6 +27,7 @@ if [[ "${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}" =~ zh_CN ]]; then
     MSG_ERR_NOCONF="错误: 未检测到任何 snapper 配置或普通用户权限不足，尝试提取失败。"
     MSG_ERR_MATCH="错误: 在配置 [%s] 中未找到匹配的快照 (描述: %s)。\n"
     MSG_ERR_BA="错误: 未在 btrfs-assistant 中匹配到对应的回档序号。\n"
+    MSG_ERR_BA_LIST="错误: btrfs-assistant 无法读取回档列表。\n"
 
     MSG_CANCEL="操作已取消。"
     MSG_UNKNOWN_OPT="未知选项: %s\n"
@@ -77,6 +78,7 @@ else
     MSG_ERR_NOCONF="Error: No snapper configs detected or user permission denied."
     MSG_ERR_MATCH="Error: No matching snapshot found in config [%s] (Desc: %s).\n"
     MSG_ERR_BA="Error: Could not match restore ID in btrfs-assistant.\n"
+    MSG_ERR_BA_LIST="Error: btrfs-assistant could not list restore points.\n"
 
     MSG_CANCEL="Operation cancelled."
     MSG_UNKNOWN_OPT="Unknown option: %s\n"
@@ -548,7 +550,13 @@ execute_restore() {
     fi
 
     # 预加载列表以减少进程呼叫开销
-    local ba_list_output=$(btrfs-assistant -l || true)
+    local ba_list_output
+    # btrfs-assistant switches to GUI mode when a display is inherited from sudo.
+    # Its CLI list and restore calls must use the same headless environment.
+    if ! ba_list_output=$(env -u DISPLAY -u WAYLAND_DISPLAY -u XDG_RUNTIME_DIR btrfs-assistant -l); then
+        notify_err "$MSG_ERR_BA_LIST"
+        exit 1
+    fi
     local restore_ba_ids=()
 
     for conf in "${configs_to_restore[@]}"; do

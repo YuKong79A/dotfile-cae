@@ -95,6 +95,13 @@ if status is-interactive
 
     # NyxNiri one-command system update
     function up --description "一键系统与软件包更新 (Arch / CachyOS)"
+        if not quicksave
+            set_color red
+            echo "[!] 更新前快照创建失败，已停止更新" >&2
+            set_color normal
+            return 1
+        end
+
         set -l helper (_nyxniri_pkg_helper)
         set -l res 0
 
@@ -131,7 +138,10 @@ if status is-interactive
             else
                 sudo pacman -Syu $argv
             end
+            set res $status
         end
+
+        return $res
     end
     alias update=up
 

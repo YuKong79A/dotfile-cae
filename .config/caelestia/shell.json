@@ -197,7 +197,8 @@
         "randomizeMediaShapeColors": false,
         "replaceMediaLyricsWithVisuals": false,
         "showClockSeconds": false,
-        "showHyprlandSplash": true
+        "showHyprlandSplash": true,
+        "showTerminal": false
     },
     "general": {
         "apps": {

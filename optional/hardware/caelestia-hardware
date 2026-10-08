@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+"""Small, fixed-command bridge between the dashboard and local hardware tools."""
+
+import json
+import re
+import subprocess
+import sys
+import time
+
+
+def run(*argv):
+    try:
+        result = subprocess.run(argv, capture_output=True, text=True, timeout=5, check=False)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise RuntimeError(str(exc)) from exc
+    if result.returncode:
+        raise RuntimeError((result.stderr or result.stdout).strip() or f"{argv[0]} exited {result.returncode}")
+    return result.stdout
+
+
+def table_value(table, key):
+    match = re.search(r"^\|\s*" + re.escape(key) + r"\s*\|\s*(.*?)\s*\|$", table, re.MULTILINE)
+    return match.group(1).strip('"') if match else ""
+
+
+def rgb_call(method, signature, *args):
+    output = run("busctl", "--system", "call", "org.hp.omen", "/org/hp/omen/Rgb",
+                 "org.hp.omen.Rgb", method, signature, *args).strip()
+    if output != 's "OK"':
+        raise RuntimeError(f"OMEN RGB {method} failed: {output}")
+
+
+def status():
+    result = {"fan": {}, "power": {}, "scx": {}, "rgb": {}, "errors": {}}
+    for name, command in (
+        ("fan", ("omen-cli", "fan", "info")),
+        ("power", ("omen-cli", "power", "info")),
+        ("scx", ("scxctl", "get")),
+        ("rgb", ("omen-cli", "rgb", "config")),
+    ):
+        try:
+            output = run(*command)
+            if name == "fan":
+                result[name]["mode"] = table_value(output, "Global Mode")
+                for index in (1, 2):
+                    match = re.search(rf"Fan {index}\s*\|\s*Current RPM:\s*(\d+)", output)
+                    result[name][f"rpm{index}"] = int(match.group(1)) if match else None
+            elif name == "power":
+                result[name]["profile"] = table_value(output, "active")
+                result[name]["available"] = table_value(output, "available") == "true"
+            elif name == "scx":
+                match = re.search(r"running\s+(\w+)\s+in\s+(\w+)\s+mode", output, re.IGNORECASE)
+                result[name]["scheduler"] = match.group(1).lower() if match else ""
+                result[name]["mode"] = match.group(2) if match else ""
+            else:
+                result[name]["power"] = table_value(output, "power") == "true"
+                result[name]["available"] = table_value(output, "driver_active") == "true"
+        except (RuntimeError, ValueError) as exc:
+            result["errors"][name] = str(exc)
+    return result
+
+
+def change(category, value):
+    presets = {
+        "eco": ("power-saver", "powersave"),
+        "daily": ("balanced", "auto"),
+        "gaming": ("performance", "gaming"),
+    }
+    if category == "preset":
+        if value not in presets:
+            raise ValueError("Unsupported power preset")
+        target_power, target_scx = presets[value]
+        run("scxctl", "switch", "--mode", target_scx)
+        run("omen-cli", "power", "set-profile", target_power)
+        run("omen-cli", "fan", "set-mode", "auto")
+        for attempt in range(3):
+            actual_power = table_value(run("omen-cli", "power", "info"), "active")
+            scx_output = run("scxctl", "get")
+            match = re.search(r"running\s+\w+\s+in\s+(\w+)\s+mode", scx_output, re.IGNORECASE)
+            actual_scx = match.group(1).lower() if match else ""
+            if actual_power == target_power and actual_scx == target_scx:
+                return ""
+            if attempt == 0 and actual_power != target_power:
+                run("omen-cli", "power", "set-profile", target_power)
+            time.sleep(0.5)
+        raise RuntimeError(
+            f"Preset {value} did not settle: OMEN={actual_power}, SCX={actual_scx}"
+        )
+    if category == "rgb":
+        if value not in ("off", "on"):
+            raise ValueError("Unsupported keyboard light state")
+        rgb_call("SetGlobal", "bis", "true" if value == "on" else "false", "100", "ltr")
+        return value
+    if category == "fan" and value in ("auto", "custom", "max"):
+        return run("omen-cli", "fan", "set-mode", value).strip()
+    raise ValueError("Unsupported hardware action")
+
+
+def main():
+    try:
+        if sys.argv[1:] == ["status"]:
+            print(json.dumps(status()))
+        elif len(sys.argv) == 4 and sys.argv[1] == "set":
+            print(json.dumps({"ok": True, "message": change(sys.argv[2], sys.argv[3])}))
+        else:
+            raise ValueError("Usage: caelestia-hardware status | set CATEGORY VALUE")
+    except (RuntimeError, ValueError) as exc:
+        print(json.dumps({"ok": False, "error": str(exc)}))
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

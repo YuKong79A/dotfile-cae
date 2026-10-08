@@ -44,10 +44,11 @@ The repository currently includes:
 - `.local/share/applications/foot-caelestia.desktop`: the Caelestia-aware Foot desktop entry.
 - `.local/share/applications/wechat.desktop`: uses the themed WeChat icon instead of the vendor desktop entry's absolute icon path.
 - `optional/svp/`: an inactive, opt-in snapshot of the standalone mpv and Tsukimi mpv configurations, SVP launch wrappers, and restore instructions. The normal tracked-file restore copies this directory into the home directory but does not install its files into `~/.config` or enable SVP.
+- `optional/hardware/`: an opt-in Midnight Shell Hardware tab, its OMEN/SCX control helper, and an installer. Normal restoration only copies this directory; it does not add the tab to the active Shell.
 - `.local/share/icons/Papirus-caelestia-dark/`: a snapshot of the generated theme. Caelestia recolors Papirus folder icons, while application and file-type icons come from WhiteSur. Subsequent palette changes are runtime output, not intentional configuration edits.
 - `.face`: the user's profile image.
 
-The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, unrelated Fish plugins, Kitty or Celluloid configuration, SVP/mpv/libmpv/uosc binaries, the Google Sans Flex installer, or system-level configuration. The optional SVP snapshot is configuration only and requires a separate activation step. In particular, `~/.codex/config.toml`, Airlock's `/etc/xdg/quickshell/astra-airlock` configuration, the privileged GRUB deployment helper, `/etc/default/grub`, and `/boot/grub/themes/caelestia-nexus` must be checked or recreated separately. Do not claim that these items can be restored from this repository.
+The repository does not include a complete package manifest, private keys or tokens, browser profiles, game data, unrelated Fish plugins, Kitty or Celluloid configuration, SVP/mpv/libmpv/uosc binaries, the Google Sans Flex installer, or system-level configuration. The optional SVP and Hardware components require separate activation. In particular, `~/.codex/config.toml`, Airlock's `/etc/xdg/quickshell/astra-airlock` configuration, the privileged GRUB deployment helper, the SCX Polkit rule, `/etc/default/grub`, and `/boot/grub/themes/caelestia-nexus` must be checked or recreated separately. Do not claim that these items can be restored from this repository.
 
 ## Codex Skill
 
@@ -159,6 +160,7 @@ Inspect first and install only what is missing. Repository scripts may require a
 - Python bindings for GObject/RSVG and Cairo to build the Bibata-Caelestia cursor; PyQt6 and Pillow for the GRUB theme generator
 - Optional components: LibreOffice, Fcitx5, Cava, Bat, Codex CLI, OpenCode, Airlock, and `arch-update`
 - SVP 4 Linux with a VapourSynth-enabled mpv/libmpv, Tsukimi, and uosc only if the optional SVP setup is selected
+- OMEN Space (`omen-cli`), `scxctl`, `busctl`, and an active `lavd` scheduler only if the optional Hardware tab is selected
 
 On Arch or CachyOS, query installed packages and use `pacman -Si` or `paru -Si` to confirm package names before installation. Do not install guessed package names from this README without checking them, and do not assume that an AUR helper is available.
 
@@ -204,6 +206,10 @@ The theme and wallpaper hooks also run `~/.local/bin/caelestia-grub-sync`. That 
 ## Optional SVP restoration for mpv and Tsukimi
 
 The `optional/svp/` directory holds the source machine's two mpv configuration files, the Tsukimi hardware-decoding hook, the standalone mpv socket and uosc settings, and portable launch wrappers. It is not activated by the normal dotfiles restoration. To opt in after installing the applications, follow [`optional/svp/README.md`](optional/svp/README.md) in order: build a VapourSynth-enabled mpv/libmpv, install SVP and uosc, back up conflicting files, copy the optional configuration, select the desktop launchers, set Tsukimi's GSettings keys, and verify a video. The included `nvdec-copy` setting is tailored to NVIDIA hardware; adapt it on a different GPU.
+
+## Optional Midnight Shell Hardware tab
+
+The `optional/hardware/` directory contains the Hardware dashboard page and a helper for this machine's HP OMEN fan, power, keyboard light, and SCX controls. Normal restoration leaves it inactive. After verifying the hardware tools and restoring or creating a local Midnight Shell copy, follow [`optional/hardware/README.md`](optional/hardware/README.md) to install it explicitly. The installer backs up changed files and can be run again after merging a new Midnight Shell release. The local Shell copy takes precedence over the package files, so `paru -Syu` alone does not update its interface.
 
 ## Current Desktop Behavior
 

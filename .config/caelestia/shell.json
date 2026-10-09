@@ -1,317 +1,317 @@
 {
-    "ai": {
-        "defaultOllamaModel": "mistral",
-        "enableOllama": false,
-        "ollamaHistoryJson": "[]"
-    },
-    "appearance": {
-        "font": {
-            "clock": "Inter",
-            "headline": {
-                "family": "Inter",
-                "small": {
-                    "italic": false,
-                    "size": 24,
-                    "vaxes": {
-                        "ROND": 25
-                    },
-                    "weight": 500
-                }
-            },
-            "scale": 1
-        },
-        "islands": false,
-        "pitchBlack": false,
-        "transparency": {
-            "base": 0.8013157894736842,
-            "enabled": true
+  "ai": {
+    "defaultOllamaModel": "mistral",
+    "enableOllama": false,
+    "ollamaHistoryJson": "[]"
+  },
+  "appearance": {
+    "font": {
+      "clock": "Inter",
+      "headline": {
+        "family": "Inter",
+        "small": {
+          "italic": false,
+          "size": 24,
+          "vaxes": {
+            "ROND": 25
+          },
+          "weight": 500
         }
+      },
+      "scale": 1
     },
-    "background": {
-        "desktopClock": {
-            "background": {
-                "enabled": true
-            },
-            "enabled": true,
-            "invertColors": true,
-            "position": "top-right"
-        },
-        "desktopLyrics": {
-            "enabled": true,
-            "invertColors": true,
-            "scale": 1
-        },
-        "videoWallpaperPaused": false,
-        "visualiser": {
-            "autoHide": true,
-            "blur": false,
-            "enabled": true,
-            "renderer": "cpu"
-        }
-    },
-    "bar": {
-        "activeWindow": {
-            "compact": true,
-            "inverted": false,
-            "showOnHover": true
-        },
-        "clock": {
-            "background": true,
-            "showDate": true,
-            "showSeconds": false
-        },
-        "dock": {
-            "monitorCenter": true,
-            "recolourIcons": false
-        },
-        "entries": {
-            "center": [
-                {
-                    "enabled": true,
-                    "id": "activeWindow"
-                }
-            ],
-            "end": [
-                {
-                    "enabled": true,
-                    "id": "tray"
-                },
-                {
-                    "enabled": true,
-                    "id": "clock"
-                },
-                {
-                    "enabled": true,
-                    "id": "statusIcons"
-                },
-                {
-                    "enabled": true,
-                    "id": "power"
-                }
-            ],
-            "start": [
-                {
-                    "enabled": true,
-                    "id": "logo"
-                },
-                {
-                    "enabled": true,
-                    "id": "workspaces"
-                },
-                {
-                    "enabled": true,
-                    "id": "spotify"
-                },
-                {
-                    "enabled": true,
-                    "id": "github"
-                }
-            ]
-        },
-        "github": {
-            "background": true,
-            "recolourIcons": true
-        },
-        "popouts": {
-            "activeWindow": true,
-            "tray": true
-        },
-        "position": "left",
-        "spotify": {
-            "autoHide": true,
-            "background": true,
-            "horizontalVolume": true,
-            "inverted": false,
-            "maxTitleLength": 10,
-            "showVisualiser": true
-        },
-        "statusIcons": [
-            {
-                "enabled": true,
-                "id": "network"
-            },
-            {
-                "enabled": true,
-                "id": "bluetooth"
-            },
-            {
-                "enabled": true,
-                "id": "battery"
-            },
-            {
-                "enabled": true,
-                "id": "lockStatus"
-            },
-            {
-                "enabled": true,
-                "id": "notifications"
-            }
-        ],
-        "tray": {
-            "background": true,
-            "compact": true,
-            "recolour": true
-        },
-        "workspaces": {
-            "activeIndicator": true,
-            "activeTrail": true,
-            "occupiedBg": false,
-            "showUnoccupied": false,
-            "showWindows": false,
-            "showWindowsOnSpecialWorkspaces": false,
-            "shown": 5,
-            "specialWorkspaceIcons": [
-                {
-                    "flags": "",
-                    "icon": "sports_esports",
-                    "name": "steam",
-                    "regex": ""
-                },
-                {
-                    "flags": "",
-                    "icon": "calendar_today",
-                    "name": "google",
-                    "regex": ""
-                },
-                {
-                    "flags": "",
-                    "icon": "diversity_2",
-                    "name": "on_together",
-                    "regex": ""
-                }
-            ],
-            "useIcon": true,
-            "windowIcons": [
-                {
-                    "flags": "",
-                    "icon": "sports_esports",
-                    "name": "",
-                    "regex": "steam(_app_(default|[0-9]+))?"
-                }
-            ]
-        }
-    },
-    "dashboard": {
-        "colorizeMediaGif": true,
-        "profilePicShape": 20,
-        "randomizeMediaShapeColors": false,
-        "replaceMediaLyricsWithVisuals": false,
-        "showClockSeconds": false,
-        "showHyprlandSplash": true,
-        "showTerminal": false
-    },
-    "general": {
-        "apps": {
-            "terminal": [
-                "foot"
-            ]
-        },
-        "idle": {
-            "inhibitWhenAudio": true,
-            "lockBeforeSleep": true,
-            "timeouts": [
-                {
-                    "enabled": true,
-                    "idleAction": "lock",
-                    "inhibitWhenAudio": false,
-                    "inhibitWhenCharging": false,
-                    "respectInhibitors": true,
-                    "timeout": 180
-                },
-                {
-                    "enabled": true,
-                    "idleAction": "dpms off",
-                    "inhibitWhenAudio": false,
-                    "inhibitWhenCharging": false,
-                    "respectInhibitors": true,
-                    "returnAction": "dpms on",
-                    "timeout": 300
-                }
-            ]
-        }
-    },
-    "launcher": {
-        "favouriteApps": [
-            "net.lutris.elden-ring-chdf-4",
-            "wechat",
-            "moe.tsuna.tsukimi"
-        ],
-        "hiddenApps": [
-            "thunar-settings"
-        ]
-    },
-    "lock": {
-        "profilePicShape": 19
-    },
-    "services": {
-        "clockFormat": "TwelveHour",
-        "gpuType": "Nvidia",
-        "pipPaused": false,
-        "weatherLocation": "Tangshan, China"
-    },
-    "shimeji": {
-        "enabled": false
-    },
-    "utilities": {
-        "gameMode": {
-            "autoEnableRegexes": [
-                "steam_proton",
-                "steam_app_1203220",
-                "steam_app_default"
-            ]
-        },
-        "quickToggles": [
-            {
-                "enabled": true,
-                "id": "wifi"
-            },
-            {
-                "enabled": true,
-                "id": "bluetooth"
-            },
-            {
-                "enabled": false,
-                "id": "quickshare"
-            },
-            {
-                "enabled": true,
-                "id": "mic"
-            },
-            {
-                "enabled": true,
-                "id": "settings"
-            },
-            {
-                "enabled": true,
-                "id": "gameMode"
-            },
-            {
-                "enabled": true,
-                "id": "dnd"
-            },
-            {
-                "enabled": false,
-                "id": "vpn"
-            },
-            {
-                "enabled": true,
-                "id": "wallpaper"
-            },
-            {
-                "enabled": true,
-                "id": "badapple"
-            },
-            {
-                "enabled": true,
-                "id": "pauseWallpaper"
-            },
-            {
-                "enabled": true,
-                "id": "pipPause"
-            }
-        ],
-        "toasts": {
-            "transparency": true
-        }
+    "islands": false,
+    "pitchBlack": false,
+    "transparency": {
+      "base": 0.8013157894736842,
+      "enabled": true
     }
+  },
+  "background": {
+    "desktopClock": {
+      "background": {
+        "enabled": true
+      },
+      "enabled": true,
+      "invertColors": true,
+      "position": "top-right"
+    },
+    "desktopLyrics": {
+      "enabled": true,
+      "invertColors": true,
+      "scale": 1
+    },
+    "videoWallpaperPaused": false,
+    "visualiser": {
+      "autoHide": true,
+      "blur": false,
+      "enabled": true,
+      "renderer": "cpu"
+    }
+  },
+  "bar": {
+    "activeWindow": {
+      "compact": true,
+      "inverted": false,
+      "showOnHover": true
+    },
+    "clock": {
+      "background": true,
+      "showDate": true,
+      "showSeconds": false
+    },
+    "dock": {
+      "monitorCenter": true,
+      "recolourIcons": false
+    },
+    "entries": {
+      "center": [
+        {
+          "enabled": true,
+          "id": "activeWindow"
+        }
+      ],
+      "end": [
+        {
+          "enabled": true,
+          "id": "tray"
+        },
+        {
+          "enabled": true,
+          "id": "clock"
+        },
+        {
+          "enabled": true,
+          "id": "statusIcons"
+        },
+        {
+          "enabled": true,
+          "id": "power"
+        }
+      ],
+      "start": [
+        {
+          "enabled": true,
+          "id": "logo"
+        },
+        {
+          "enabled": true,
+          "id": "workspaces"
+        },
+        {
+          "enabled": true,
+          "id": "spotify"
+        },
+        {
+          "enabled": true,
+          "id": "github"
+        }
+      ]
+    },
+    "github": {
+      "background": true,
+      "recolourIcons": true
+    },
+    "popouts": {
+      "activeWindow": true,
+      "tray": true
+    },
+    "position": "left",
+    "spotify": {
+      "autoHide": true,
+      "background": true,
+      "horizontalVolume": true,
+      "inverted": false,
+      "maxTitleLength": 10,
+      "showVisualiser": true
+    },
+    "statusIcons": [
+      {
+        "enabled": true,
+        "id": "network"
+      },
+      {
+        "enabled": true,
+        "id": "bluetooth"
+      },
+      {
+        "enabled": true,
+        "id": "battery"
+      },
+      {
+        "enabled": true,
+        "id": "lockStatus"
+      },
+      {
+        "enabled": true,
+        "id": "notifications"
+      }
+    ],
+    "tray": {
+      "background": true,
+      "compact": true,
+      "recolour": true
+    },
+    "workspaces": {
+      "activeIndicator": true,
+      "activeTrail": true,
+      "occupiedBg": false,
+      "showUnoccupied": false,
+      "showWindows": false,
+      "showWindowsOnSpecialWorkspaces": false,
+      "shown": 5,
+      "specialWorkspaceIcons": [
+        {
+          "flags": "",
+          "icon": "sports_esports",
+          "name": "steam",
+          "regex": ""
+        },
+        {
+          "flags": "",
+          "icon": "calendar_today",
+          "name": "google",
+          "regex": ""
+        },
+        {
+          "flags": "",
+          "icon": "diversity_2",
+          "name": "on_together",
+          "regex": ""
+        }
+      ],
+      "useIcon": true,
+      "windowIcons": [
+        {
+          "flags": "",
+          "icon": "sports_esports",
+          "name": "",
+          "regex": "steam(_app_(default|[0-9]+))?"
+        }
+      ]
+    }
+  },
+  "dashboard": {
+    "colorizeMediaGif": true,
+    "profilePicShape": 20,
+    "randomizeMediaShapeColors": false,
+    "replaceMediaLyricsWithVisuals": false,
+    "showClockSeconds": false,
+    "showHyprlandSplash": true,
+    "showTerminal": false
+  },
+  "general": {
+    "apps": {
+      "terminal": [
+        "foot"
+      ]
+    },
+    "idle": {
+      "inhibitWhenAudio": true,
+      "lockBeforeSleep": true,
+      "timeouts": [
+        {
+          "enabled": true,
+          "idleAction": "lock",
+          "inhibitWhenAudio": false,
+          "inhibitWhenCharging": false,
+          "respectInhibitors": true,
+          "timeout": 180
+        },
+        {
+          "enabled": true,
+          "idleAction": "dpms off",
+          "inhibitWhenAudio": false,
+          "inhibitWhenCharging": false,
+          "respectInhibitors": true,
+          "returnAction": "dpms on",
+          "timeout": 300
+        }
+      ]
+    }
+  },
+  "launcher": {
+    "favouriteApps": [
+      "net.lutris.elden-ring-chdf-4",
+      "wechat",
+      "moe.tsuna.tsukimi"
+    ],
+    "hiddenApps": [
+      "thunar-settings"
+    ]
+  },
+  "lock": {
+    "profilePicShape": 19
+  },
+  "services": {
+    "clockFormat": "TwelveHour",
+    "gpuType": "Nvidia",
+    "pipPaused": false,
+    "weatherLocation": "Tangshan, China"
+  },
+  "shimeji": {
+    "enabled": false
+  },
+  "utilities": {
+    "gameMode": {
+      "autoEnableRegexes": [
+        "steam_proton",
+        "steam_app_1203220",
+        "steam_app_default"
+      ]
+    },
+    "quickToggles": [
+      {
+        "enabled": true,
+        "id": "wifi"
+      },
+      {
+        "enabled": true,
+        "id": "bluetooth"
+      },
+      {
+        "enabled": false,
+        "id": "quickshare"
+      },
+      {
+        "enabled": true,
+        "id": "mic"
+      },
+      {
+        "enabled": true,
+        "id": "settings"
+      },
+      {
+        "enabled": true,
+        "id": "gameMode"
+      },
+      {
+        "enabled": true,
+        "id": "dnd"
+      },
+      {
+        "enabled": false,
+        "id": "vpn"
+      },
+      {
+        "enabled": true,
+        "id": "wallpaper"
+      },
+      {
+        "enabled": true,
+        "id": "badapple"
+      },
+      {
+        "enabled": true,
+        "id": "pauseWallpaper"
+      },
+      {
+        "enabled": true,
+        "id": "pipPause"
+      }
+    ],
+    "toasts": {
+      "transparency": true
+    }
+  }
 }

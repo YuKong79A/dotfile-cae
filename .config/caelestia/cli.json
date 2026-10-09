@@ -3,10 +3,10 @@
         "iconTheme": "Papirus-caelestia-dark",
         "iconThemeDark": "Papirus-caelestia-dark",
         "iconThemeLight": "Papirus-caelestia-dark",
-        "postHook": "bash ~/.config/caelestia/posthooks/cursor.sh && bash ~/.config/caelestia/scripts/sync-fcitx5-theme.sh && bash ~/.config/caelestia/scripts/sync-papirus-icons.sh && bash ~/.config/caelestia/scripts/sync-cava-theme.sh && bash ~/.config/caelestia/scripts/sync-bat-theme.sh && bash ~/.config/caelestia/scripts/sync-yazi-theme.sh && (if command -v unopkg >/dev/null 2>&1 || flatpak info org.libreoffice.LibreOffice >/dev/null 2>&1; then bash ~/.config/caelestia/scripts/sync-libreoffice-theme.sh; fi) && bash ~/.config/caelestia/scripts/sync-codex-theme.sh && bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && (if command -v astra-airlock >/dev/null 2>&1; then sudo -n astra-airlock --sync; fi) && bash /home/yukong/.local/bin/caelestia-grub-sync"
+        "postHook": "bash ~/.config/caelestia/posthooks/cursor.sh && python3 ~/.config/caelestia/scripts/sync-folia-theme.py && bash ~/.config/caelestia/scripts/sync-fcitx5-theme.sh && bash ~/.config/caelestia/scripts/sync-papirus-icons.sh && bash ~/.config/caelestia/scripts/sync-cava-theme.sh && bash ~/.config/caelestia/scripts/sync-bat-theme.sh && bash ~/.config/caelestia/scripts/sync-yazi-theme.sh && (if command -v unopkg >/dev/null 2>&1 || flatpak info org.libreoffice.LibreOffice >/dev/null 2>&1; then bash ~/.config/caelestia/scripts/sync-libreoffice-theme.sh; fi) && bash ~/.config/caelestia/scripts/sync-codex-theme.sh && bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && (if command -v astra-airlock >/dev/null 2>&1; then sudo -n astra-airlock --sync; fi) && bash /home/yukong/.local/bin/caelestia-grub-sync"
     },
     "wallpaper": {
-        "postHook": "bash ~/.config/caelestia/posthooks/cursor.sh && bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && (if command -v astra-airlock >/dev/null 2>&1; then sudo -n astra-airlock --sync; fi) && bash /home/yukong/.local/bin/caelestia-grub-sync"
+        "postHook": "bash ~/.config/caelestia/posthooks/cursor.sh && python3 ~/.config/caelestia/scripts/sync-folia-theme.py && bash ~/.config/caelestia/scripts/sync-opencode-theme.sh && (if command -v astra-airlock >/dev/null 2>&1; then sudo -n astra-airlock --sync; fi) && bash /home/yukong/.local/bin/caelestia-grub-sync"
     },
     "toggles": {
         "communication": {

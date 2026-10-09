@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# The loopback DevTools endpoint lets Caelestia update Folia's own theme store.
+# Port 0 avoids a fixed listening port; Chrome writes the chosen port to
+# ~/.config/Folia/DevToolsActivePort after startup.
+python3 "$HOME/.config/caelestia/scripts/sync-folia-theme.py" --wait 30 >/dev/null 2>&1 &
+exec /usr/bin/folia-major \
+    --remote-debugging-address=127.0.0.1 \
+    --remote-debugging-port=0 \
+    "$@"

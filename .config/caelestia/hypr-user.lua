@@ -50,6 +50,19 @@ hl.unbind("SUPER + W")
 hl.bind("SUPER + W", hl.dsp.global("caelestia:windowSwitcher"))
 hl.unbind("SUPER + K")
 hl.bind("SUPER + K", hl.dsp.global("caelestia:keybinds"))
+-- Size Folia when the usual float shortcut is used; keep its launch tiled.
+hl.unbind(vars.kbToggleWindowFloating)
+hl.bind(vars.kbToggleWindowFloating, function()
+    local win = hl.get_active_window()
+    if not win then return end
+    if win.class == "folia-major" and win.initial_title == "Folia" and not win.floating then
+        hl.dispatch(hl.dsp.window.float({ action = "on", window = win }))
+        hl.dispatch(hl.dsp.window.resize({ x = 1440, y = 900, relative = false, window = win }))
+        hl.dispatch(hl.dsp.window.center({ window = win }))
+    else
+        hl.dispatch(hl.dsp.window.float())
+    end
+end)
 hl.unbind("SUPER + ALT + W")
 hl.bind("SUPER + ALT + W", hl.dsp.global("caelestia:wallpaper"))
 hl.unbind("SUPER + TAB")
@@ -201,6 +214,24 @@ hl.workspace_rule({ workspace = "special:sysmon", layout = "monocle" })
 
 hl.window_rule({ match = { class = "^(Zoom)$" }, float = true, center = true })
 hl.window_rule({ match = { class = "^Chat$" }, float = true })
+-- Keep Folia unaffected by compositor window opacity.
+hl.window_rule({
+    match = { class = "^folia-major$" },
+    opacity = "1.0 override 1.0 override 1.0 override",
+    opaque = true,
+})
+-- Folia's external remote window (docs/technical.md).
+hl.window_rule({
+    name = "folia-remote",
+    match = { class = "^(folia-major)$", title = "^(Folia Remote)$" },
+    float = true,
+    size = { 520, 315 },
+    center = true,
+    pin = true,
+    no_blur = true,
+    border_size = 0,
+    no_shadow = true,
+})
 hl.window_rule({
     match = { class = "^mpv$" },
     opaque = true,

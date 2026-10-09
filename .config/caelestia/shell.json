@@ -6,9 +6,9 @@
     },
     "appearance": {
         "font": {
-            "clock": "GoogleSansFlex",
+            "clock": "Inter",
             "headline": {
-                "family": "GoogleSansFlex",
+                "family": "Inter",
                 "small": {
                     "italic": false,
                     "size": 24,

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Start the locally built mpv with SVP available.
+svp_root="$HOME/.local/opt/svp4"
+if ! pgrep -u "$(id -u)" -x SVPManager >/dev/null 2>&1; then
+    "$HOME/.local/bin/svp-manager-themed" >/dev/null 2>&1 &
+fi
+export VSSCRIPT_PATH="$svp_root/mpv/libvapoursynth-script.so.0"
+export PYTHONPATH="$svp_root/mpv/python${PYTHONPATH:+:$PYTHONPATH}"
+export LD_LIBRARY_PATH="$svp_root/mpv${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+exec "$HOME/.local/opt/mpv-svp/bin/mpv" "$@"

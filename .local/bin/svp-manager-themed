@@ -1,0 +1,6 @@
+#!/bin/sh
+# Use the system Qt runtime so SVP Manager can load the system qtengine theme.
+export LD_LIBRARY_PATH=/usr/lib
+export QT_PLUGIN_PATH=/usr/lib/qt6/plugins
+export QT_QPA_PLATFORMTHEME=qtengine
+exec /home/yukong/.local/opt/svp4/SVPManager "$@"
